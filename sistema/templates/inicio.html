@@ -3,5 +3,20 @@
 
 
 {% block 'conteudo' %}
-<h1>Inicio</h1>
+<main>
+    <h1>Página Inicial do iMercado</h1>
+
+    <p>Veja abaixo os produtos e mercados disponíveis</p>
+    <div>
+        <h3>Produtos</h3>
+        <img src="{% static 'sistema/img/setabaixo.svg' %}" alt="seta baixo">
+        <section>Lista dos produtos</section>
+    </div>
+
+    <div>
+        <h3>Mercados</h3>
+        <img src="{% static 'sistema/img/setabaixo.svg' %}" alt="seta baixo">
+        <section>Lista dos mercados</section>
+    </div>
+</main>
 {% endblock %}
