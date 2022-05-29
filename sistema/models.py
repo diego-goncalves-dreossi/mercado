@@ -15,7 +15,7 @@ class Produto(models.Model):
     preco = models.FloatField()
     descricao = models.TextField()
     usuario = models.ForeignKey(Usuario,on_delete=models.DO_NOTHING)
-    img = models.ImageField(upload_to = 'fotos',null=True,blank=True)
+    img = models.ImageField(upload_to = 'produtos',null=True,blank=True)
 
     def __str__(self):   
         return self.nome
@@ -24,6 +24,7 @@ class Mercado(models.Model):
     nome = models.CharField(max_length=50)
     endereco = models.CharField(max_length=50)
     usuario = models.ForeignKey(Usuario,on_delete=models.DO_NOTHING)
+    img = models.ImageField(upload_to = 'mercados',null=True,blank=True)
 
     def __str__(self):   
         return self.nome
