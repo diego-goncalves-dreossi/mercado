@@ -15,6 +15,7 @@ class Produto(models.Model):
     preco = models.FloatField()
     descricao = models.TextField()
     usuario = models.ForeignKey(Usuario,on_delete=models.DO_NOTHING)
+    img = models.ImageField(upload_to = 'fotos',null=True,blank=True)
 
     def __str__(self):   
         return self.nome
