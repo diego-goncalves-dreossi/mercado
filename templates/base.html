@@ -15,12 +15,40 @@
 </head>
 
 <body>
-  {% if user.is_authenticated %}
+  {% if usuario %}
+  <nav class="navbar navbar-dark bg-danger">
+    <a class="navbar-brand" style="font-weight: bolder;" href="#">iMercado</a>
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
+    <div class="navbar-collapse collapse" id="navbarsExample01">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'sistema:sobre' %}">Sobre</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Mercados</a>
+        </li>
+        
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Listas de compras</a>
+        </li>
+        <li class="nav-item active dropdown">
+          <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ações</a>
+          <div class="dropdown-menu" aria-labelledby="dropdown01">
+            <a class="dropdown-item" href="#">Ver compra atual</a>
+            <a class="dropdown-item" href="#">Cadastrar mercado</a>
+            <a class="dropdown-item" href="#">Cadastrar produto</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
   {% endif %}
   {% block 'conteudo' %}{% endblock %}
 
-  <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+  <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS Diego 29/05-->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
 

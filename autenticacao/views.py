@@ -11,13 +11,13 @@ from hashlib import sha256
 
 def login(request):
     if request.session.get('usuario'):
-        return redirect('/livro/inicio/')
+        return redirect('/')
     status = request.GET.get('status')
     return render(request,'login.html',{'status': status})
 
 def cadastro(request):
     if request.session.get('usuario'):
-        return redirect('/livro/inicio/')
+        return redirect('/')
     status = request.GET.get('status')
     return render(request,'cadastro.html', {'status': status})
 
@@ -60,15 +60,15 @@ def valida_login(request):
     usuario = Usuario.objects.filter(email = email).filter(senha = senha)
 
     if len(usuario) == 0:
-        return redirect('/login/?status=1')
+        return redirect('/?status=1')
     elif len(usuario) > 0:
         request.session['usuario'] = usuario[0].id
         return redirect(f'/inicio/?id_usuario={request.session["usuario"]}')
-        return HttpResponse('Inicio')
+
 
     
     return HttpResponse(f"{email} {senha}")
 
 def sair(request):
     request.session.flush() # Limpa a session
-    return redirect('/login/')
+    return redirect('/')
