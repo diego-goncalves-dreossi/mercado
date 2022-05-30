@@ -5,5 +5,5 @@ app_name = 'sistema'
 urlpatterns = [
     path('inicio/',views.inicio, name='inicio'),
     path('sobre/',views.sobre, name="sobre"),
-    path('novoprodutp/',views.adProduto,name="novoproduto",)
+    path('novoproduto/',views.adProduto,name="novoproduto",)
 ]
