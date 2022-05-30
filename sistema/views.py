@@ -6,3 +6,7 @@ def inicio(request):
 
 def sobre(request):
     return render(request,'sobre.html',{'usuario_logado':request.session.get('usuario')})
+
+def adProduto(request):
+    
+    return
