@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'titulo' %}iMercado - Categorias{% endblock %}
+{% block 'head' %}
+
+{% endblock %}
+
+{% block 'conteudo' %}
+<main>
+    <h1>Lista dos categorias</h1>
+    <button><a href="{% url 'categorias:adcategoria' %}">Adicionar</a></button>
+</main>
+{% endblock %}

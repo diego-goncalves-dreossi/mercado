@@ -1,6 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
+from autenticacao.models import Usuario
+from .models import Categoria,Filial,Fornecedor,Pedido,Produto
+
 def inicio(request):
     return render(request,'inicio.html',{'usuario_logado':request.session.get('usuario')})
 
@@ -9,10 +12,9 @@ def sobre(request):
 
 def adProduto(request):
     
-    return
+    return render(request,'produto/adproduto.html',{'usuario_logado':request.session.get('usuario')})
 
-def listaSetores(request):
-    return render(request,'setor/setores.html',{'usuario_logado':request.session.get('usuario')})
+
 
 def listaProdutos(request):
     return render(request,'produto/produtos.html',{'usuario_logado':request.session.get('usuario')})

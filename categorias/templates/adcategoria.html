@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'titulo' %}iMercado - Novo categorias{% endblock %}
+{% block 'conteudo' %}
+<main>
+    <h1>Adicionar nova categoria</h1>
+
+    <form action="{% url 'categorias:categoriasbd' %}" method="POST">
+        {% csrf_token %}
+        <label>Nome:</label>
+        <input type="text" name="nsetor" id="nsetor" placeholder="Nome setor">
+
+        <label>Descrição:</label>
+        <textarea id="dsetor" name="dsetor" rows="2" cols="30"></textarea>
+        <input type="submit" value="Salvar" class="btn btn-success">
+    </form>
+
+    
+</main>
+{% endblock %}
