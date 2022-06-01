@@ -9,6 +9,15 @@
 {% block 'conteudo' %}
 <main>
     <h1>Lista dos categorias</h1>
+    <ul>
+        {% for ct in ctgs %}
+            <li>
+                <div>
+                    <span><a href="{% url 'categorias:vercategoria' ct.id %}">{{ct.nome}}</a></span>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
     <button><a href="{% url 'categorias:adcategoria' %}">Adicionar</a></button>
 </main>
 {% endblock %}
