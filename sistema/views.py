@@ -10,3 +10,15 @@ def sobre(request):
 def adProduto(request):
     
     return
+
+def listaSetores(request):
+    return render(request,'setor/setores.html',{'usuario_logado':request.session.get('usuario')})
+
+def listaProdutos(request):
+    return render(request,'produto/produtos.html',{'usuario_logado':request.session.get('usuario')})
+
+def listaFiliais(request):
+    return render(request,'filial/filiais.html',{'usuario_logado':request.session.get('usuario')})
+
+def listaFornecedores(request):
+    return render(request,'fornecedor/fornecedores.html',{'usuario_logado':request.session.get('usuario')})

@@ -12,6 +12,7 @@
   <style>
     
 </style>
+{% block 'head' %}{% endblock %}
 </head>
 
 <body>
@@ -28,13 +29,13 @@
           <a class="nav-link" href="{% url 'sistema:sobre' %}">Sobre</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="#">Setores</a>
+          <a class="nav-link" href="{% url 'sistema:setores' %}">Setores</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="#">Produtos</a>
+          <a class="nav-link" href="{% url 'sistema:produtos' %}">Produtos</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="#">Filiais</a>
+          <a class="nav-link" href="{% url 'sistema:filiais' %}">Filiais</a>
         </li>
         
         <li class="nav-item active">
@@ -42,7 +43,7 @@
         </li>
 
         <li class="nav-item active">
-          <a class="nav-link" href="#">Fornecedores</a>
+          <a class="nav-link" href="{% url 'sistema:fornecedores' %}">Fornecedores</a>
         </li>
 
         <li class="nav-item active dropdown">
@@ -56,7 +57,7 @@
           </div>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="#">Sair</a>
+          <a class="nav-link" href="{% url 'autenticacao:sair' %}">Sair</a>
         </li>
       </ul>
     </div>
