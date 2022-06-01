@@ -8,6 +8,7 @@ def adCategoria(request):
     return render(request,'adcategoria.html',{'usuario_logado':request.session.get('usuario')})
 
 def adCategoriasBD(request):
+    usuario = Usuario.objects.get(id=request.session['usuario'])
     if request.method == 'POST':
         nome_setor = request.POST.get('nsetor')
         descricao_setor = request.POST.get('dsetor')
@@ -16,7 +17,7 @@ def adCategoriasBD(request):
             print('Campos vazios')
             return render(request,'adcategoria.html',{'usuario_logado':request.session.get('usuario')})
         else:
-            setor = Categoria(nome=nome_setor,descricao=descricao_setor,usuario=request.session.get('usuario'))
+            setor = Categoria(nome=nome_setor,descricao=descricao_setor,usuario=usuario)
 
         try:
             setor.save()
