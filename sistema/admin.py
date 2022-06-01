@@ -1,10 +1,6 @@
 from django.contrib import admin
 from .models import Categoria,Filial,Fornecedor,Pedido,Produto
 
-@admin.register(Categoria)
-class UsuarioAdmin(admin.ModelAdmin):
-    # Torna os dados dos usuários não mutáveis pelos administradores do sistema
-    readonly_fields = ('nome','descricao','usuario')
 
 @admin.register(Filial)
 class UsuarioAdmin(admin.ModelAdmin):
