@@ -54,7 +54,27 @@ def listaCategoria(request):
         )
 
 def verCategoria(request,id):
-    #livro = Livro.objects.get(id=id)
     if request.session.get('usuario'):
-        pass
-    return
+        cat = Categoria.objects.get(id=id)
+        if request.session.get('usuario') == cat.usuario.id: 
+            return render(
+                request,
+                'vercategoria.html',
+                {
+                    'usuario_logado':request.session.get('usuario'),
+                    'cat':cat
+                }
+            )
+
+def pageditarCategoria(request,id):
+        if request.session.get('usuario'):
+            cat = Categoria.objects.get(id=id)
+            if request.session.get('usuario') == cat.usuario.id: 
+                return render(
+                request,
+                'editarcategoria.html',
+                {
+                    'usuario_logado':request.session.get('usuario'),
+                    'cat':cat
+                }
+            )

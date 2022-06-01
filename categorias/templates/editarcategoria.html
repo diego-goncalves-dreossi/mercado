@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'titulo' %}iMercado - Editar categoria{% endblock %}
+{% block 'conteudo' %}
+<main>
+    <h1>Editar Categoria {{cat.id}}</h1>
+    
+    <p>{{cat.nome}}</p>
+    <p>{{cat.descricao}}</p>
+
+    <button>Salvar</button>
+    <button>Cancelar</button>
+   
+
+    
+</main>
+{% endblock %}
