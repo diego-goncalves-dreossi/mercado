@@ -9,10 +9,10 @@
     <form action="{% url 'categorias:categoriasbd' %}" method="POST">
         {% csrf_token %}
         <label>Nome:</label>
-        <input type="text" name="nsetor" id="nsetor" placeholder="Nome setor">
+        <input type="text" name="ncategoria" id="ncategoria" placeholder="Nome categoria">
 
         <label>Descrição:</label>
-        <textarea id="dsetor" name="dsetor" rows="2" cols="30"></textarea>
+        <textarea id="dcategoria" name="dcategoria" rows="2" cols="30"></textarea>
         <input type="submit" value="Salvar" class="btn btn-success">
     </form>
 

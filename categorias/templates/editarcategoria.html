@@ -6,12 +6,17 @@
 <main>
     <h1>Editar Categoria {{cat.id}}</h1>
     
-    <p>{{cat.nome}}</p>
-    <p>{{cat.descricao}}</p>
+    <form action="{% url 'categorias:editarcategoriabd' %}" method="post">
+        {% csrf_token %}
+        <label>Nome:</label>
+        <input type="text"  value="{{cat.nome}}" name="ncategoria" id="ncategoria">
+        <!--class="form-control"-->
+        <label>Descrição:</label>
+        <input type="text" id="dcategoria" value="{{cat.descricao}}" name="dcategoria" ></input>
 
-    <button>Salvar</button>
-    <button>Cancelar</button>
-   
+        <input type="submit" value="Salvar" class="btn btn-success">
+        <a href="{% url 'categorias:vercategoria' cat.id %}" class="btn btn-danger">Cancelar</a>
+    </form>
 
     
 </main>

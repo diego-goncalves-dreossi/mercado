@@ -13,8 +13,8 @@ def adCategoriasBD(request):
         usuario = Usuario.objects.get(id=request.session['usuario'])
         ctgs = Categoria.objects.filter(usuario=usuario)
         if request.method == 'POST':
-            nome_setor = request.POST.get('nsetor')
-            descricao_setor = request.POST.get('dsetor')
+            nome_setor = request.POST.get('ncategoria')
+            descricao_setor = request.POST.get('dcategoria')
 
             if not nome_setor or not descricao_setor:
                 print('Campos vazios')
@@ -78,3 +78,6 @@ def pageditarCategoria(request,id):
                     'cat':cat
                 }
             )
+
+def edtCategoriaBD(request):
+    return
