@@ -121,7 +121,7 @@ def excluirCategoria(request,id):
         ctgs = Categoria.objects.filter(usuario=usuario)
         ctg = Categoria.objects.get(id=id)
         # Evita a falha de segurança de alguém poder mexer no sistema pelo inspecionar
-        if ctg.usuario.id == request.session['usuario'] and request.method == 'POST':
+        if ctg.usuario.id == request.session['usuario']:
             try:
                 ctg = ctg.delete()
                 return redirect(
