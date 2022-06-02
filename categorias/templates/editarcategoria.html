@@ -8,6 +8,7 @@
     
     <form action="{% url 'categorias:editarcategoriabd' %}" method="post">
         {% csrf_token %}
+        <input type="hidden" name="categoria_id" value="{{cat.id}}">
         <label>Nome:</label>
         <input type="text"  value="{{cat.nome}}" name="ncategoria" id="ncategoria">
         <!--class="form-control"-->

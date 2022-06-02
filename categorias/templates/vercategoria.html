@@ -10,7 +10,7 @@
     <p>{{cat.descricao}}</p>
 
     <button><a href="{% url 'categorias:editarcategoria' cat.id %}">Editar</a></button>
-    <button><a href="">Excluir</a></button>
+    <button><a href="{% url 'categorias:excluircategoria' cat.id %}">Excluir</a></button>
    
 
     

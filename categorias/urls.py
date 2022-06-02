@@ -9,5 +9,6 @@ urlpatterns = [
     path('editarcategoria',views.edtCategoriaBD,name="editarcategoriabd"),
     path('adcategoria/',views.adCategoria,name="adcategoria"),
     path('adcategoriaBD/',views.adCategoriasBD,name="categoriasbd"),
+    path('excluircategoria/<int:id>',views.excluirCategoria,name="excluircategoria")
 
 ]
