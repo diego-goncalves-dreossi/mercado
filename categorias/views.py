@@ -115,11 +115,12 @@ def edtCategoriaBD(request):
                 print(erro)
                 return HttpResponse('Erro ao editar categoria')
 
-def excluirCategoria(request,id):
+def excluirCategoria(request):
     if request.session.get('usuario'):
         usuario = Usuario.objects.get(id=request.session['usuario'])
+        categoria_id = request.POST.get('categoria_id')
         ctgs = Categoria.objects.filter(usuario=usuario)
-        ctg = Categoria.objects.get(id=id)
+        ctg = Categoria.objects.get(id=categoria_id)
         # Evita a falha de segurança de alguém poder mexer no sistema pelo inspecionar
         if ctg.usuario.id == request.session['usuario']:
             try:

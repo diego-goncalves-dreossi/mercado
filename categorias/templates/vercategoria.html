@@ -9,8 +9,13 @@
     <p>{{cat.nome}}</p>
     <p>{{cat.descricao}}</p>
 
-    <button><a href="{% url 'categorias:editarcategoria' cat.id %}">Editar</a></button>
-    <button><a href="{% url 'categorias:excluircategoria' cat.id %}">Excluir</a></button>
+    <form action="{% url 'categorias:excluircategoria' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="categoria_id" value="{{cat.id}}">
+        
+        <button><a href="{% url 'categorias:editarcategoria' cat.id %}">Editar</a></button>
+        <input type="submit" value="Excluir" class="btn btn-info">
+    </form>
    
 
     
