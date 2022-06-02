@@ -26,8 +26,6 @@ class Filial(models.Model):
         return self.nome
 
 
-
-
 class Pedido(models.Model):
     produto = models.ForeignKey(Produto,on_delete=models.DO_NOTHING)
     fornecedor = models.ForeignKey(Fornecedor,on_delete=models.DO_NOTHING)
