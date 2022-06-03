@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'autenticacao',
     'sistema',
     'categorias',
-    'fornecedores'
+    'fornecedores',
+    'produtos'
 ]
 
 MIDDLEWARE = [
