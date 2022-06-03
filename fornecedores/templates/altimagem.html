@@ -8,12 +8,19 @@
 
 {% block 'conteudo' %}
 <main>
-    <h1>Alterar imagem de Fornecedor</h1>
+    <h1>Alterar imagem</h1>
     
-        <span>{{fn.nome}}</span>
+        <span>Fornecedor {{fn.nome}}</span>
           
-        <form action="">
+        <form action="{% url 'fornecedores:editarfornecedorbd' %}" method="post" enctype='multipart/form-data'>
+            {% csrf_token %}
+            <input type="hidden" name="fornecedor_id" value="{{fn.id}}">
+            <input type="hidden" name="imagem_antiga" value="{{fn.img.url}}">
+            <label>Novo Logo:</label>
+            <input id="id_image" type="file" class="" Required name="image">
 
+            <input type="submit" value="Salvar" class="btn btn-success">
+            <a href="{% url 'fornecedores:editarfornecedor' fn.id %}" class="btn btn-danger">Cancelar</a>
 
         </form>     
                     

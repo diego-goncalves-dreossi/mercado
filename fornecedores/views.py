@@ -141,3 +141,44 @@ def excluirFornecedor(request):
                 print(erro)
                 return HttpResponse('Erro ao excluir fornecedor')
 
+def pageNovapaginseririmg(request,id):
+    if request.session.get('usuario'):
+            fn = Fornecedor.objects.get(id=id)
+            # Evita a falha de segurança de alguém poder mexer no sistema pelo inspecionar
+            if request.session.get('usuario') == fn.usuario.id:
+
+                return render(
+                    request,
+                    'altimagem.html',
+                    {
+                        'usuario_logado':request.session.get('usuario'),
+                        'fn':fn
+                    }
+                )
+
+def alterarImagem(request):
+    if request.session.get('usuario'):
+        fornecedor_id = request.POST.get('fornecedor_id')
+        logo = request.FILES['image']
+        fn = Fornecedor.objects.get(id=fornecedor_id)
+        imagem_antiga = request.POST.get('imagem_antiga')
+
+        try:
+            remove(f'./{imagem_antiga}')
+            fn.img = logo
+            fn.save()
+
+            return redirect(
+                f'/fornecedores/fornecedor{fornecedor_id}',
+                {
+                    'usuario_logado':request.session.get('usuario'),
+                    'fn':fn
+                }
+                
+            )
+
+        except Exception as erro:
+            print(erro)
+            return HttpResponse('Erro ao alterar imagem do fornecedor')
+    return
+

@@ -6,7 +6,7 @@
 <main>
     <h1>Editar fornecedor {{fn.id}}</h1>
     
-    <form action="{% url 'fornecedores:editarfornecedorbd' %}" method="post" enctype='multipart-form-data'>
+    <form action="{% url 'fornecedores:editarfornecedorbd' %}" method="post" enctype='multipart/form-data'>
         {% csrf_token %}
         <input type="hidden" name="fornecedor_id" value="{{fn.id}}">
 
@@ -20,6 +20,7 @@
 
         <input type="submit" value="Salvar" class="btn btn-success">
         <a href="{% url 'fornecedores:verfornecedor' fn.id %}" class="btn btn-danger">Cancelar</a>
+        <a href="{% url 'fornecedores:paginseririmg' fn.id %}" class="btn btn-warning">Nova imagem</a>
         
     </form>
 

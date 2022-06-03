@@ -9,6 +9,8 @@ urlpatterns = [
     path('editarfornecedor/',views.edtFornecedorBD,name="editarfornecedorbd"),
     path('adfornecedor/',views.adFornecedor,name="adfornecedor"),
     path('adfornecedorBD/',views.adFornecedorBD,name="fornecedoresbd"),
-    path('excluirfornecedor/',views.excluirFornecedor,name="excluirfornecedor")
+    path('excluirfornecedor/',views.excluirFornecedor,name="excluirfornecedor"),
+    path('listafornecedores/paginseririmg<int:id>',views.pageNovapaginseririmg,name="paginseririmg"),
+    path('alterarimagem/',views.alterarImagem,name="alterarimagem")
 
 ]
