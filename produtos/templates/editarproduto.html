@@ -6,7 +6,7 @@
 <main>
     <h1>Editar produto {{pr.id}}</h1>
     
-    <form action="{% url 'produtos:editarprodutobd' %}" method="post">
+    <form action="{% url 'produtos:editarprodutobd' %}" method="post" enctype='multipart-form-data'>
         {% csrf_token %}
         <input type="hidden" name="produto_id" value="{{pr.id}}">
 

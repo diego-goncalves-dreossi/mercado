@@ -1,24 +1,24 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block 'titulo' %}iMercado - Editar produto{% endblock %}
+{% block 'titulo' %}iMercado - Adicionar produto{% endblock %}
 {% block 'conteudo' %}
 <main>
-    <h1>Editar produto {{pr.id}}</h1>
+    <h1>Adicionar produto {{pr.id}}</h1>
     
-    <form action="{% url 'produtos:produtobd' %}" method="post">
+    <form action="{% url 'produtos:produtobd' %}" method="post" enctype='multipart/form-data'>
         {% csrf_token %}
         <input type="hidden" name="produto_id" value="{{pr.id}}">
 
-        <label>Logo:</label>
-        <input id="id_image" type="file" class="" Required name="image">
+        <label>Foto:</label>
+        <input id="imageprod" type="file" class="" name="imageprod">
         
         <label>Nome:</label>
         <input type="text"  value="{{pr.nome}}" name="nprod" id="nprod">
         <!--class="form-control"-->
         <label>Categoria:</label>
-        <select style="display: none;" id="cat_prod" class="form-control" name="cat_prod">
-            {% for cat in categorias %}
+        <select id="cat_prod"  name="cat_prod">
+            {% for cat in ctgs %}
               <option value="{{cat.id}}">{{cat.nome}}</option>
             {% endfor %}
         </select>
@@ -27,21 +27,22 @@
         <input type="text"  value="{{pr.preco}}" name="pprod" id="pprod">
 
         <label>Descrição:</label>
-        <textarea type="text"  value="{{pr.descricao}}" name="dprod" id="dprod">
+        <textarea type="text"  value="{{pr.descricao}}" name="dprod" id="dprod"></textarea>
 
         <label>Estoque:</label>
         <input type="text"  value="{{pr.estoque}}" name="eprod" id="eprod">
 
-        <input type="submit" value="Salvar" class="btn btn-success">
-        <a href="{% url 'produtos:listaprodutos' pr.id %}" class="btn btn-danger">Cancelar</a>
+        
 
         <label>Fornecedor:</label>
-        <select style="display: none;" id="forn_prod" class="form-control" name="forn_prod">
-            {% for forn in fornecedores %}
+        <select  id="forn_prod" name="forn_prod">
+            {% for forn in fncd %}
               <option value="{{forn.id}}">{{forn.nome}}</option>
             {% endfor %}
         </select>
         
+        <input type="submit" value="Salvar" class="btn btn-success">
+        <a href="{% url 'produtos:listaprodutos' %}" class="btn btn-danger">Cancelar</a>
     </form>
 
     

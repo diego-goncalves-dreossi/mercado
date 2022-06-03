@@ -13,7 +13,7 @@
         {% for pr in prods %}
             <li>
                 <div>
-                    <span><a href="{% url 'produtos:verproduto' fn.id %}">{{pr.nome}}</a></span>
+                    <span><a href="{% url 'produtos:verproduto' pr.id %}">{{pr.nome}}</a></span>
                 </div>
             </li>
         {% endfor %}

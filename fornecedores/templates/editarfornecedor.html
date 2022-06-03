@@ -6,7 +6,7 @@
 <main>
     <h1>Editar fornecedor {{fn.id}}</h1>
     
-    <form action="{% url 'fornecedores:editarfornecedorbd' %}" method="post">
+    <form action="{% url 'fornecedores:editarfornecedorbd' %}" method="post" enctype='multipart-form-data'>
         {% csrf_token %}
         <input type="hidden" name="fornecedor_id" value="{{fn.id}}">
         <label>Logo:</label>

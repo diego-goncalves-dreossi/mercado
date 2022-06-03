@@ -5,6 +5,7 @@ from django.shortcuts import redirect, render
 from autenticacao.models import Usuario
 from categorias.models import Categoria
 from fornecedores.models import Fornecedor
+from produtos.models import Produto
 
 
 """
@@ -14,36 +15,55 @@ request.session.get('usuario') == cat.usuario.id: Evita a falha de segurança de
 """
 def adProduto(request):
     if request.session.get('usuario'):
-        return render(request,'adproduto.html',{'usuario_logado':request.session.get('usuario')})
+        usuario = Usuario.objects.get(id=request.session['usuario'])
+        prods = Produto.objects.filter(usuario=usuario)
+        fncd = Fornecedor.objects.filter(usuario=usuario)
+        ctgs = Categoria.objects.filter(usuario=usuario)
+        return render(
+            request,
+            'adproduto.html',
+            {
+                'usuario_logado':request.session.get('usuario'),
+                'prods':prods,
+                'fncd':fncd,
+                'ctgs':ctgs
+            }
+        )
 
 def adProdutoBD(request):
     if request.session.get('usuario'):
-        usuario = Usuario.objects.get(id=request.session['usuario'])
-        fncd = Fornecedor.objects.filter(usuario=usuario)
-
+        
         if request.method == 'POST':
-            nfornecedor = request.POST.get('nfornecedor')
-            cnpj = request.POST.get('cnpj')
-            logo = request.FILES['image']
-            print(logo)
-            if not nfornecedor or not cnpj:
-                print('Campos vazios')
-                return redirect('/produtos/adproduto',{'usuario_logado':request.session.get('usuario')})
-                
-            else:
-                fn = Fornecedor(nome=nfornecedor,cnpj=cnpj,usuario=usuario,img=logo)
-
+            usuario = Usuario.objects.get(id=request.session['usuario'])
+            nprod = request.POST.get('nprod')
+            c = request.POST.get('cat_prod')
+            catp = Categoria.objects.get(id=c)
+            preco = request.POST.get('pprod')
+            foto = request.FILES['imageprod']
+            desc = request.POST.get('dprod')
+            est = request.POST.get('eprod')
+            f = request.POST.get('forn_prod')
+            fnp = Fornecedor.objects.get(id=f)
+            
             try:
-                fn.save()
-                print('Fornecedor salva')
-                return redirect(
-                    '/produtos/listaprodutos',
-                    {
-                        'usuario_logado':request.session.get('usuario'),
-                        'fncd':fncd
-                    }
+                if not nprod or not catp or not preco  or not desc or not est or not fnp :
+                    print('Campos vazios')
+                    return redirect('/produtos/adproduto',{'usuario_logado':request.session.get('usuario')})
+                    
+                else:
+                    p = Produto(nome=nprod,categoria=catp,preco=preco,img=foto,descricao=desc,estoque=est,fornecedor=fnp,usuario=usuario)
+
                 
-                )
+                    p.save()
+                    print('Fornecedor salva')
+                    return redirect(
+                        '/produtos/listaprodutos',
+                        {
+                            'usuario_logado':request.session.get('usuario'),
+
+                        }
+                    
+                    )
             except Exception as erro:
                 print(erro)
                 return HttpResponse('Erro ao salvar fornecedor')
@@ -51,14 +71,14 @@ def adProdutoBD(request):
 def listaProdutos(request):
     if request.session.get('usuario'):
         usuario = Usuario.objects.get(id=request.session['usuario'])
-        fncd = Fornecedor.objects.filter(usuario=usuario)
+        prods = Produto.objects.filter(usuario=usuario)
         #return HttpResponse('lISTA FORNECEDORES')
         return render(
             request,
             'produtos.html',
             {
                 'usuario_logado':request.session.get('usuario'),
-                'fncd':fncd
+                'prods':prods
             }
         
         )
