@@ -9,6 +9,8 @@ urlpatterns = [
     path('editarproduto/',views.edtProdutoBD,name="editarprodutobd"),
     path('adproduto/',views.adProduto,name="adproduto"),
     path('adprodutoBD/',views.adProdutoBD,name="produtobd"),
-    path('excluirproduto/',views.excluirProduto,name="excluirproduto")
+    path('excluirproduto/',views.excluirProduto,name="excluirproduto"),
+    path('listaprodutos/paginseririmg<int:id>',views.pageNovapaginseririmg,name="paginseririmg"),
+    path('alterarimagem/',views.alterarImagem,name="alterarimagem")
 
 ]

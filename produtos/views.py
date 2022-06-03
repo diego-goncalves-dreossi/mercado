@@ -162,3 +162,46 @@ def excluirProduto(request):
                 print(erro)
                 return HttpResponse('Erro ao excluir produto')
 
+def pageNovapaginseririmg(request,id):
+    if request.session.get('usuario'):
+            pr = Produto.objects.get(id=id)
+            # Evita a falha de segurança de alguém poder mexer no sistema pelo inspecionar
+            if request.session.get('usuario') == pr.usuario.id:
+
+                return render(
+                    request,
+                    'altimagemprod.html',
+                    {
+                        'usuario_logado':request.session.get('usuario'),
+                        'pr':pr
+                    }
+                )
+
+def alterarImagem(request):
+    if request.session.get('usuario'):
+        produto_id = request.POST.get('produto_id')
+        logo = request.FILES['image']
+        pr = Produto.objects.get(id=produto_id)
+        imagem_antiga = request.POST.get('imagem_antiga')
+
+        try:
+            remove(f'./{imagem_antiga}')
+            pr.img = logo
+            pr.save()
+
+            return redirect(
+                f'/fornecedores/listafornecedores/fornecedor{produto_id}',
+                {
+                    'usuario_logado':request.session.get('usuario'),
+                    'pr':pr
+                }
+                
+            )
+
+        except Exception as erro:
+            print(erro)
+            return HttpResponse('Erro ao alterar imagem do fornecedor')
+    
+
+
+

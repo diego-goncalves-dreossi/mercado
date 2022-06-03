@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'titulo' %}iMercado - Alterar imagem de produto{% endblock %}
+{% block 'head' %}
+
+{% endblock %}
+
+{% block 'conteudo' %}
+<main>
+    <h1>Alterar imagem</h1>
+    
+        <span>Produto {{pr.nome}}</span>
+          
+        <form action="{% url 'produtos:alterarimagem' %}" method="post" enctype='multipart/form-data'>
+            {% csrf_token %}
+            <input type="hidden" name="produto_id" value="{{pr.id}}">
+            <input type="hidden" name="imagem_antiga" value="{{pr.img.url}}">
+            <label>Novo Logo:</label>
+            <input id="id_image" type="file" class="" Required name="image">
+
+            <input type="submit" value="Salvar" class="btn btn-success">
+            <a href="{% url 'produtos:editarproduto' pr.id %}" class="btn btn-danger">Cancelar</a>
+
+        </form>     
+                    
+               
+           
+        
+        
+</main>
+{% endblock %}

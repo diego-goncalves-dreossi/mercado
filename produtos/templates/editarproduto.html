@@ -32,15 +32,16 @@
         <label>Estoque:</label>
         <input type="text"  value="{{pr.estoque}}" name="eprod" id="eprod">
 
-        <input type="submit" value="Salvar" class="btn btn-success">
-        <a href="{% url 'produtos:verproduto' pr.id %}" class="btn btn-danger">Cancelar</a>
-
         <label>Fornecedor:</label>
         <select style="display: none;" id="forn_prod" class="form-control" name="forn_prod">
             {% for forn in fornecedores %}
               <option value="{{forn.id}}">{{forn.nome}}</option>
             {% endfor %}
         </select>
+
+        <input type="submit" value="Salvar" class="btn btn-success">
+        <a href="{% url 'produtos:verproduto' pr.id %}" class="btn btn-danger">Cancelar</a>
+        <a href="{% url 'produtos:paginseririmg' pr.id %}" class="btn btn-warning">Nova imagem</a>
         
     </form>
 
