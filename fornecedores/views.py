@@ -169,7 +169,7 @@ def alterarImagem(request):
             fn.save()
 
             return redirect(
-                f'/fornecedores/fornecedor{fornecedor_id}',
+                f'/fornecedores/listafornecedores/fornecedor{fornecedor_id}',
                 {
                     'usuario_logado':request.session.get('usuario'),
                     'fn':fn
@@ -180,5 +180,5 @@ def alterarImagem(request):
         except Exception as erro:
             print(erro)
             return HttpResponse('Erro ao alterar imagem do fornecedor')
-    return
+    
 
