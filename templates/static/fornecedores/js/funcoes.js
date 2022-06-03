@@ -37,7 +37,7 @@ function confirmarEx(){
 })();
 
 (function(){
-    const btnedfn = document.querySelectorAll(".efn")
+    const btnedfn = document.querySelectorAll(".edfn")
 
     btnedfn.forEach(btn=>{
         btn.addEventListener('click',(e)=>{

@@ -113,9 +113,9 @@ def pageditarProduto(request,id):
 
 def edtProdutoBD(request):
     if request.session.get('usuario'):
-        fornecedor_id = request.POST.get('fornecedor_id')
-        nfornecedor = request.POST.get('nfornecedor')
-        cnpj = request.POST.get('cnpj')
+        produto_id = request.POST.get('produto_id')
+        nproduto = request.POST.get('nproduto')
+        
         fn = Fornecedor.objects.get(id=fornecedor_id)
         print(fornecedor_id,nfornecedor,cnpj,fn)
 
