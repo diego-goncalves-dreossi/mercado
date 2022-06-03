@@ -1,4 +1,4 @@
 - App Pedido
 - CSS
-- JS Produtos
-- Lógica para alterar imagens
+- JS Produtos e Categoria
+- Exportar e importar JSON

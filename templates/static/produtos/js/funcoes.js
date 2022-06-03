@@ -1,9 +1,13 @@
-function confirmarAdProd(){
-    alert('Fornecedor salvo com sucesso');
+function confirmarAd(){
+    alert('Salvo com sucesso')
 }
 
 function confirmarEd(){
-    alert('Fornecedor editado com sucesso');
+    alert('Editado com sucesso')
+}
+
+function confirmarEx(){
+    alert('Excluido com sucesso')
 }
 
 function confirmarAltImg(){
