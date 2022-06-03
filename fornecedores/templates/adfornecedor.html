@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'titulo' %}iMercado - Novo categorias{% endblock %}
+{% block 'conteudo' %}
+<main>
+    <h1>Adicionar nova categoria</h1>
+
+    <form action="{% url 'fornecedores:fornecedoresbd' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <input id="id_image" type="file" class="" name="image">
+        <label>Nome:</label>
+        <input type="text" name="nfornecedor" id="nfornecedor" placeholder="Nome categoria">
+
+        <label>CNPJ:</label>
+        <textarea id="dfornecedor" name="dfornecedor" rows="2" cols="30"></textarea>
+        <input type="submit" value="Salvar" class="btn btn-success">
+    </form>
+
+    
+</main>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'titulo' %}iMercado - Editar categoria{% endblock %}
+{% block 'conteudo' %}
+<main>
+    <h1>Editar Fornecedor {{fn.id}}</h1>
+    
+    <form action="{% url 'fornecedores:editarfornecedorbd' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="fornecedor_id" value="{{fn.id}}">
+        <label>Nome:</label>
+        <input type="text"  value="{{fn.nome}}" name="nfornecedor" id="nfornecedor">
+        <!--class="form-control"-->
+        <label>CNPJ:</label>
+        <input type="text"  value="{{fn.cnpj}}" name="cnpj" id="cnpj">
+
+        <input type="submit" value="Salvar" class="btn btn-success">
+        <a href="{% url 'fornecedores:verfornecedor' fn.id %}" class="btn btn-danger">Cancelar</a>
+        <a href="{% url 'fornecedores:verfornecedor' fn.id %}" class="btn btn-info">Voltar</a>
+    </form>
+
+    
+</main>
+{% endblock %}
