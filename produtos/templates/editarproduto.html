@@ -39,8 +39,8 @@
             {% endfor %}
         </select>
 
-        <input type="submit" value="Salvar" class="btn btn-success">
-        <a href="{% url 'produtos:verproduto' pr.id %}" class="btn btn-danger">Cancelar</a>
+        <input type="submit" value="Salvar" class="btn btn-success epr">
+        <a href="{% url 'produtos:verproduto' pr.id %}" class="btn btn-danger">Voltar</a>
         <a href="{% url 'produtos:paginseririmg' pr.id %}" class="btn btn-warning">Nova imagem</a>
         
     </form>

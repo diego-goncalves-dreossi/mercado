@@ -19,8 +19,8 @@
             <label>Novo Logo:</label>
             <input id="id_image" type="file" class="" Required name="image">
 
-            <input type="submit" value="Salvar" class="btn btn-success">
-            <a href="{% url 'fornecedores:editarfornecedor' fn.id %}" class="btn btn-danger">Cancelar</a>
+            <input type="submit" value="Salvar" class="btn btn-success afnimg">
+            <a href="{% url 'fornecedores:editarfornecedor' fn.id %}" class="btn btn-danger">Voltar</a>
 
         </form>     
                     
@@ -29,4 +29,6 @@
         
         
 </main>
+
+<script src="{% static 'fornecedores/js/funcoes.js' %}"></script>
 {% endblock %}
