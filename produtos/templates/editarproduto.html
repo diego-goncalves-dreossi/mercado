@@ -10,8 +10,8 @@
         {% csrf_token %}
         <input type="hidden" name="produto_id" value="{{pr.id}}">
 
-        <label>Logo:</label>
-        <input id="id_image" type="file" class="" Required name="image">
+        <!--<label>Logo:</label>
+        <input id="id_image" type="file" class="" value="pr.img.url" Required name="image">-->
 
         <label>Nome:</label>
         <input type="text"  value="{{pr.nome}}" name="nprod" id="nprod">
@@ -27,7 +27,7 @@
         <input type="text"  value="{{pr.preco}}" name="pprod" id="pprod">
 
         <label>Descrição:</label>
-        <textarea type="text"  value="{{pr.descricao}}" name="dprod" id="dprod">
+        <textarea type="text"  value="{{pr.descricao}}" name="dprod" id="dprod"></textarea>
 
         <label>Estoque:</label>
         <input type="text"  value="{{pr.estoque}}" name="eprod" id="eprod">

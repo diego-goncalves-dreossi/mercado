@@ -18,10 +18,11 @@
 
         
         <input type="hidden" name="produto_id" value="{{pr.id}}">
+        <input type="hidden" name="imagem_prod" value="{{pr.img.url}}">
         
-        <button><a href="{% url 'produtos:editarproduto' fn.id %}">Editar</a></button>
+        <button><a href="{% url 'produtos:editarproduto' pr.id %}">Editar</a></button>
         <input type="submit" value="Excluir" class="btn btn-danger exclusao" >
-        <a href="{% url 'produtos:verproduto' fn.id %}" class="btn btn-info">Voltar</a>
+        <a href="{% url 'produtos:verproduto' pr.id %}" class="btn btn-info">Voltar</a>
     </form>
    
 </main>

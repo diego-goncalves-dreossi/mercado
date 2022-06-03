@@ -9,8 +9,9 @@
     <form action="{% url 'fornecedores:editarfornecedorbd' %}" method="post" enctype='multipart-form-data'>
         {% csrf_token %}
         <input type="hidden" name="fornecedor_id" value="{{fn.id}}">
-        <label>Logo:</label>
-        <input id="id_image" type="file" class="" Required name="image">
+
+        <!--<label>Logo:</label>
+        <input id="id_image" type="file" class="" Required name="image">-->
         <label>Nome:</label>
         <input type="text"  value="{{fn.nome}}" name="nfornecedor" id="nfornecedor">
         <!--class="form-control"-->

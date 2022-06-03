@@ -1,7 +1,7 @@
 from ast import Return
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-
+from os import remove
 from autenticacao.models import Usuario
 from categorias.models import Categoria
 from fornecedores.models import Fornecedor
@@ -66,7 +66,7 @@ def adProdutoBD(request):
                     )
             except Exception as erro:
                 print(erro)
-                return HttpResponse('Erro ao salvar fornecedor')
+                return HttpResponse('Erro ao salvar produto')
         
 def listaProdutos(request):
     if request.session.get('usuario'):
@@ -85,29 +85,29 @@ def listaProdutos(request):
 
 def verProduto(request,id):
     if request.session.get('usuario'):
-        fn = Fornecedor.objects.get(id=id)
+        pr = Produto.objects.get(id=id)
         # Evita a falha de segurança de alguém poder mexer no sistema pelo inspecionar
-        if request.session.get('usuario') == fn.usuario.id: 
+        if request.session.get('usuario') == pr.usuario.id: 
             return render(
                 request,
                 'verproduto.html',
                 {
                     'usuario_logado':request.session.get('usuario'),
-                    'fn':fn
+                    'pr':pr
                 }
             )
 
 def pageditarProduto(request,id):
         if request.session.get('usuario'):
-            fn = Fornecedor.objects.get(id=id)
+            pr = Produto.objects.get(id=id)
             # Evita a falha de segurança de alguém poder mexer no sistema pelo inspecionar
-            if request.session.get('usuario') == fn.usuario.id: 
+            if request.session.get('usuario') == pr.usuario.id: 
                 return render(
                 request,
                 'editarproduto.html',
                 {
                     'usuario_logado':request.session.get('usuario'),
-                    'fn':fn
+                    'pr':pr
                 }
             )
 
@@ -136,29 +136,29 @@ def edtProdutoBD(request):
                 )
             except Exception as erro:
                 print(erro)
-                return HttpResponse('Erro ao editar fornecedor')
+                return HttpResponse('Erro ao editar produto')
 
 def excluirProduto(request):
     if request.session.get('usuario'):
         usuario = Usuario.objects.get(id=request.session['usuario'])
-        fncd = Fornecedor.objects.filter(usuario=usuario)
-        fornecedor_id = request.POST.get('fornecedor_id')
-        nfornecedor = request.POST.get('nfornecedor')
-        cnpj = request.POST.get('cnpj')
-        fn = Fornecedor.objects.get(id=fornecedor_id)
+        prods = Produto.objects.filter(usuario=usuario)
+        produto_id = request.POST.get('produto_id')
+        pr = Produto.objects.get(id=produto_id)
+        imagem_url = request.POST.get('imagem_prod')
         # Evita a falha de segurança de alguém poder mexer no sistema pelo inspecionar
-        if fn.usuario.id == request.session['usuario']:
+        if pr.usuario.id == request.session['usuario']:
             try:
-                fn = fn.delete()
+                pr = pr.delete()
+                remove(f"./{imagem_url}")
                 return redirect(
                     '/produtos/listaprodutos',
                     {
                         'usuario_logado':request.session.get('usuario'),
-                        'fncd':fncd
+                        'fncd':prods
                     }
                 
                 )
             except Exception as erro:
                 print(erro)
-                return HttpResponse('Erro ao excluir fornecedor')
+                return HttpResponse('Erro ao excluir produto')
 

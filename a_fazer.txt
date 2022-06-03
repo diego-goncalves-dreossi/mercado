@@ -1,0 +1,4 @@
+- App Pedido
+- CSS
+- JS Produtos
+- Lógica para alterar imagens
