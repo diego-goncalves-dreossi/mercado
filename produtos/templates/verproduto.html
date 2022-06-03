@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'titulo' %}iMercado - Categoria{% endblock %}
+{% block 'conteudo' %}
+<main>
+    <h1>Categoria {{fn.id}}</h1>
+    
+    <p>{{fn.nome}}</p>
+    <p>{{fn.cnpj}}</p>
+
+    <form action="{% url 'fornecedores:excluirfornecedor' %}" method="post">
+        {% csrf_token %}
+
+        <img src="{{fn.img.url}}" alt="logo">
+        <input type="hidden" name="fornecedor_id" value="{{fn.id}}">
+        
+        <button><a href="{% url 'fornecedores:editarfornecedor' fn.id %}">Editar</a></button>
+        <input type="submit" value="Excluir" class="btn btn-danger exclusao" >
+        <a href="{% url 'fornecedores:verfornecedor' fn.id %}" class="btn btn-info">Voltar</a>
+    </form>
+   
+</main>
+
+<script src="{% static 'fornecedores/js/funcoes.js' %}"></script>
+{% endblock %}

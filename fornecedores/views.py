@@ -1,9 +1,6 @@
-from ast import Return
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-
 from autenticacao.models import Usuario
-from categorias.models import Categoria
 from fornecedores.models import Fornecedor
 
 
@@ -14,7 +11,7 @@ request.session.get('usuario') == cat.usuario.id: Evita a falha de segurança de
 """
 def adFornecedor(request):
     if request.session.get('usuario'):
-        return render(request,'adFornecedor.html',{'usuario_logado':request.session.get('usuario')})
+        return render(request,'adfornecedor.html',{'usuario_logado':request.session.get('usuario')})
 
 def adFornecedorBD(request):
     if request.session.get('usuario'):

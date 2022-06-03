@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'titulo' %}iMercado - Novo categorias{% endblock %}
+{% block 'conteudo' %}
+<main>
+    <h1>Adicionar novo fornecedor</h1>
+
+    <form action="{% url 'fornecedores:fornecedoresbd' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <label>Logo:</label>
+        <input id="id_image" type="file" class="" Required name="image">
+        <label>Nome:</label>
+        <input type="text" name="nfornecedor" id="nfornecedor" placeholder="Nome categoria">
+
+        <label>CNPJ:</label>
+        <input id="cnpj" name="cnpj" rows="2" cols="30"></input>
+        <input type="submit" value="Salvar" class="btn btn-success" onclick="confirmarAdForn()">
+    </form>
+
+    
+</main>
+
+<script src="{% static 'fornecedores/js/funcoes.js' %}"></script>
+{% endblock %}

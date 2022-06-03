@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'titulo' %}iMercado - Setores{% endblock %}
+{% block 'head' %}
+
+{% endblock %}
+
+{% block 'conteudo' %}
+<main>
+    <h1>Lista dos Fornecedores</h1>
+    <ul>
+        {% for fn in fncd %}
+            <li>
+                <div>
+                    <span><a href="{% url 'fornecedores:verfornecedor' fn.id %}">{{fn.nome}}</a></span>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+    <button><a href="{% url 'fornecedores:adfornecedor' %}">Adicionar</a></button>
+</main>
+{% endblock %}
