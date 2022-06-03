@@ -12,11 +12,11 @@
     <form action="{% url 'fornecedores:excluirfornecedor' %}" method="post">
         {% csrf_token %}
 
-        <img src="{{fn.img}}" alt="logo">
+        <img src="{{fn.img.url}}" alt="logo">
         <input type="hidden" name="fornecedor_id" value="{{fn.id}}">
         
         <button><a href="{% url 'fornecedores:editarfornecedor' fn.id %}">Editar</a></button>
-        <input type="submit" value="Excluir" class="btn btn-danger">
+        <input type="submit" value="Excluir" class="btn btn-danger" >
         <a href="{% url 'fornecedores:verfornecedor' fn.id %}" class="btn btn-info">Voltar</a>
     </form>
    

@@ -19,17 +19,19 @@ def adFornecedor(request):
 def adFornecedorBD(request):
     if request.session.get('usuario'):
         usuario = Usuario.objects.get(id=request.session['usuario'])
-        ctgs = Categoria.objects.filter(usuario=usuario)
-        if request.method == 'POST':
-            nome_setor = request.POST.get('ncategoria')
-            descricao_setor = request.POST.get('dcategoria')
+        
 
-            if not nome_setor or not descricao_setor:
+        if request.method == 'POST':
+            nfornecedor = request.POST.get('nfornecedor')
+            cnpj = request.POST.get('cnpj')
+            logo = request.FILES.get('id_imagem')
+
+            if not nfornecedor or not cnpj:
                 print('Campos vazios')
-                return redirect('/categorias/adcategoria',{'usuario_logado':request.session.get('usuario')})
+                return redirect('/fornecedores/adfornecedor',{'usuario_logado':request.session.get('usuario')})
                 
             else:
-                setor = Categoria(nome=nome_setor,descricao=descricao_setor,usuario=usuario)
+                fn = Fornecedor(nome=nfornecedor,cnpj=cnpj,usuario=usuario)
 
             try:
                 setor.save()

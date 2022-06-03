@@ -4,6 +4,7 @@
 {% block 'titulo' %}iMercado - Novo categorias{% endblock %}
 {% block 'conteudo' %}
 <main>
+    
     <h1>Adicionar nova categoria</h1>
 
     <form action="{% url 'categorias:categoriasbd' %}" method="POST">
@@ -13,9 +14,11 @@
 
         <label>Descrição:</label>
         <textarea id="dcategoria" name="dcategoria" rows="2" cols="30"></textarea>
-        <input type="submit" value="Salvar" class="btn btn-success">
+        <input type="submit" value="Salvar" class="btn btn-success" onclick="confirmarAdCat()">
     </form>
 
     
 </main>
+
+<script src="{% static 'categorias/js/funcoes.js' %}"></script>
 {% endblock %}

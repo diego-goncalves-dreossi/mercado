@@ -20,19 +20,20 @@ def adCategoriasBD(request):
         usuario = Usuario.objects.get(id=request.session['usuario'])
         ctgs = Categoria.objects.filter(usuario=usuario)
         if request.method == 'POST':
-            nome_setor = request.POST.get('ncategoria')
-            descricao_setor = request.POST.get('dcategoria')
+            nome_categoria = request.POST.get('ncategoria')
+            descricao_categoria = request.POST.get('dcategoria')
 
-            if not nome_setor or not descricao_setor:
+            if not nome_categoria or not descricao_categoria:
                 print('Campos vazios')
                 return redirect('/categorias/adcategoria',{'usuario_logado':request.session.get('usuario')})
                 
             else:
-                setor = Categoria(nome=nome_setor,descricao=descricao_setor,usuario=usuario)
+                setor = Categoria(nome=nome_categoria,descricao=descricao_categoria,usuario=usuario)
 
             try:
                 setor.save()
                 print('Categoria salva')
+                request.session['categoria_salva'] = True
                 return redirect(
                     '/categorias/listacategorias',
                     {
@@ -43,6 +44,7 @@ def adCategoriasBD(request):
                 )
             except Exception as erro:
                 print(erro)
+                request.session['categoria_salva'] = False
                 return HttpResponse('Erro ao salvar categoria')
         
 def listaCategoria(request):
