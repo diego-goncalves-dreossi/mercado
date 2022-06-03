@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from autenticacao.models import Usuario
 from fornecedores.models import Fornecedor
-
+from os import remove
 
 """
 request.session.get('usuario'): Se usuário está logado 
@@ -120,6 +120,7 @@ def excluirFornecedor(request):
         usuario = Usuario.objects.get(id=request.session['usuario'])
         fncd = Fornecedor.objects.filter(usuario=usuario)
         fornecedor_id = request.POST.get('fornecedor_id')
+        imagem_url = request.POST.get('imagem_url')
         nfornecedor = request.POST.get('nfornecedor')
         cnpj = request.POST.get('cnpj')
         fn = Fornecedor.objects.get(id=fornecedor_id)
@@ -127,6 +128,7 @@ def excluirFornecedor(request):
         if fn.usuario.id == request.session['usuario']:
             try:
                 fn = fn.delete()
+                remove(f'./{imagem_url}')
                 return redirect(
                     '/fornecedores/listafornecedores',
                     {

@@ -1,14 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block 'titulo' %}iMercado - Editar categoria{% endblock %}
+{% block 'titulo' %}iMercado - Editar fornecedor{% endblock %}
 {% block 'conteudo' %}
 <main>
-    <h1>Editar Fornecedor {{fn.id}}</h1>
+    <h1>Editar fornecedor {{fn.id}}</h1>
     
     <form action="{% url 'fornecedores:editarfornecedorbd' %}" method="post">
         {% csrf_token %}
         <input type="hidden" name="fornecedor_id" value="{{fn.id}}">
+        <label>Logo:</label>
+        <input id="id_image" type="file" class="" Required name="image">
         <label>Nome:</label>
         <input type="text"  value="{{fn.nome}}" name="nfornecedor" id="nfornecedor">
         <!--class="form-control"-->

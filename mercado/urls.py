@@ -24,7 +24,8 @@ urlpatterns = [
     path('',include('autenticacao.urls')),
     path('',include('sistema.urls')),
     path('categorias/',include('categorias.urls')),
-    path('fornecedores/',include('fornecedores.urls'))
+    path('fornecedores/',include('fornecedores.urls')),
+    path('produtos/',include('produtos.urls'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,26 +1,30 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block 'titulo' %}iMercado - Categoria{% endblock %}
+{% block 'titulo' %}iMercado - Produto{% endblock %}
 {% block 'conteudo' %}
 <main>
-    <h1>Categoria {{fn.id}}</h1>
-    
-    <p>{{fn.nome}}</p>
-    <p>{{fn.cnpj}}</p>
+    <h1>Produto {{pr.id}}</h1>
+    <img src="{{pr.img.url}}" alt="logo">
+    <p>{{pr.nome}}</p>
+    <p>{{pr.categoria.nome}}</p>
+    <p>{{pr.preco}}</p>
+    <p>{{pr.descricao}}</p>
+    <p>{{pr.estoque}}</p>
+    <p>{{pr.fornecedor.nome}}</p>
 
-    <form action="{% url 'fornecedores:excluirfornecedor' %}" method="post">
+    <form action="{% url 'produtos:excluirproduto' %}" method="post">
         {% csrf_token %}
 
-        <img src="{{fn.img.url}}" alt="logo">
-        <input type="hidden" name="fornecedor_id" value="{{fn.id}}">
         
-        <button><a href="{% url 'fornecedores:editarfornecedor' fn.id %}">Editar</a></button>
+        <input type="hidden" name="produto_id" value="{{pr.id}}">
+        
+        <button><a href="{% url 'produtos:editarproduto' fn.id %}">Editar</a></button>
         <input type="submit" value="Excluir" class="btn btn-danger exclusao" >
-        <a href="{% url 'fornecedores:verfornecedor' fn.id %}" class="btn btn-info">Voltar</a>
+        <a href="{% url 'produtos:verproduto' fn.id %}" class="btn btn-info">Voltar</a>
     </form>
    
 </main>
 
-<script src="{% static 'fornecedores/js/funcoes.js' %}"></script>
+<script src="{% static 'produtos/js/funcoes.js' %}"></script>
 {% endblock %}

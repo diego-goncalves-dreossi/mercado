@@ -1,23 +1,23 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block 'titulo' %}iMercado - Setores{% endblock %}
+{% block 'titulo' %}iMercado - Produtos{% endblock %}
 {% block 'head' %}
 
 {% endblock %}
 
 {% block 'conteudo' %}
 <main>
-    <h1>Lista dos Fornecedores</h1>
+    <h1>Lista dos Produtos</h1>
     <ul>
-        {% for fn in fncd %}
+        {% for pr in prods %}
             <li>
                 <div>
-                    <span><a href="{% url 'fornecedores:verfornecedor' fn.id %}">{{fn.nome}}</a></span>
+                    <span><a href="{% url 'produtos:verproduto' fn.id %}">{{pr.nome}}</a></span>
                 </div>
             </li>
         {% endfor %}
     </ul>
-    <button><a href="{% url 'fornecedores:adfornecedor' %}">Adicionar</a></button>
+    <button><a href="{% url 'produtos:adproduto' %}">Adicionar</a></button>
 </main>
 {% endblock %}

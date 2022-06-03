@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block 'titulo' %}iMercado - Categoria{% endblock %}
+{% block 'titulo' %}iMercado - Fornecedor{% endblock %}
 {% block 'conteudo' %}
 <main>
-    <h1>Categoria {{fn.id}}</h1>
+    <h1>Fornecedor {{fn.id}}</h1>
     
     <p>{{fn.nome}}</p>
     <p>{{fn.cnpj}}</p>
@@ -14,6 +14,7 @@
 
         <img src="{{fn.img.url}}" alt="logo">
         <input type="hidden" name="fornecedor_id" value="{{fn.id}}">
+        <input type="hidden" name="imagem_url" value="{{fn.img.url}}">
         
         <button><a href="{% url 'fornecedores:editarfornecedor' fn.id %}">Editar</a></button>
         <input type="submit" value="Excluir" class="btn btn-danger exclusao" >
