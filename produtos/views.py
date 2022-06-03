@@ -189,14 +189,7 @@ def alterarImagem(request):
             pr.img = logo
             pr.save()
 
-            return redirect(
-                f'/fornecedores/listafornecedores/fornecedor{produto_id}',
-                {
-                    'usuario_logado':request.session.get('usuario'),
-                    'pr':pr
-                }
-                
-            )
+            return redirect(f'/produtos/listaprodutos/produto{produto_id}')
 
         except Exception as erro:
             print(erro)
