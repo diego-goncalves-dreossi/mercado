@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+<!--{% load static %}-->
 
 {% block 'titulo' %}iMercado - Adicionar produto{% endblock %}
 {% block 'conteudo' %}
@@ -14,28 +14,28 @@
         <input id="imageprod" type="file" class="" name="imageprod">
         
         <label>Nome:</label>
-        <input type="text"  value="{{pr.nome}}" name="nprod" id="nprod">
+        <input type="text"  value="{{pr.nome}}" name="nproduto" id="nproduto">
         <!--class="form-control"-->
         <label>Categoria:</label>
-        <select id="cat_prod"  name="cat_prod">
+        <select id="cat_produto"  name="cat_produto">
             {% for cat in ctgs %}
               <option value="{{cat.id}}">{{cat.nome}}</option>
             {% endfor %}
         </select>
 
         <label>Preço:</label>
-        <input type="text"  value="{{pr.preco}}" name="pprod" id="pprod">
+        <input type="text"  value="{{pr.preco}}" name="pproduto" id="pproduto">
 
         <label>Descrição:</label>
-        <textarea type="text"  value="{{pr.descricao}}" name="dprod" id="dprod"></textarea>
+        <textarea type="text"  value="{{pr.descricao}}" name="dproduto" id="dproduto"></textarea>
 
         <label>Estoque:</label>
-        <input type="text"  value="{{pr.estoque}}" name="eprod" id="eprod">
+        <input type="text"  value="{{pr.estoque}}" name="eproduto" id="eproduto">
 
         
 
         <label>Fornecedor:</label>
-        <select  id="forn_prod" name="forn_prod">
+        <select  id="forn_produto" name="forn_produto">
             {% for forn in fncd %}
               <option value="{{forn.id}}">{{forn.nome}}</option>
             {% endfor %}
@@ -48,5 +48,5 @@
     
 </main>
 
-<script src="{% static 'produtos/js/funcoes2.js' %}"></script>
+<!--<script src="{% static 'produtos/js/funcoes2.js' %}"></script>-->
 {% endblock %}

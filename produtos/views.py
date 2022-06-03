@@ -35,15 +35,19 @@ def adProdutoBD(request):
         
         if request.method == 'POST':
             usuario = Usuario.objects.get(id=request.session['usuario'])
-            nprod = request.POST.get('nprod')
-            c = request.POST.get('cat_prod')
+            nprod = request.POST.get('nproduto')
+            c = request.POST.get('cat_produto')
+            print(c)
             catp = Categoria.objects.get(id=c)
-            preco = request.POST.get('pprod')
+            preco = request.POST.get('pproduto')
             foto = request.FILES['imageprod']
-            desc = request.POST.get('dprod')
-            est = request.POST.get('eprod')
-            f = request.POST.get('forn_prod')
+            desc = request.POST.get('dproduto')
+            est = request.POST.get('eproduto')
+            f = request.POST.get('forn_produto')
             fnp = Fornecedor.objects.get(id=f)
+            
+            if ',' in preco:
+                preco = preco.replace(',','.')
             
             try:
                 if not nprod or not catp or not preco  or not desc or not est or not fnp :
@@ -100,6 +104,10 @@ def verProduto(request,id):
 def pageditarProduto(request,id):
         if request.session.get('usuario'):
             pr = Produto.objects.get(id=id)
+            usuario = Usuario.objects.get(id=request.session['usuario'])
+            fncd = Fornecedor.objects.filter(usuario=usuario)
+            ctgs = Categoria.objects.filter(usuario=usuario)
+            
             # Evita a falha de segurança de alguém poder mexer no sistema pelo inspecionar
             if request.session.get('usuario') == pr.usuario.id: 
                 return render(
@@ -107,30 +115,52 @@ def pageditarProduto(request,id):
                 'editarproduto.html',
                 {
                     'usuario_logado':request.session.get('usuario'),
-                    'pr':pr
+                    'pr':pr,
+                    'fornecedores':fncd,
+                    'categorias':ctgs
                 }
             )
 
 def edtProdutoBD(request):
     if request.session.get('usuario'):
+        usuario = Usuario.objects.get(id=request.session['usuario'])
+        produtos = Produto.objects.filter(usuario=usuario)
         produto_id = request.POST.get('produto_id')
-        nproduto = request.POST.get('nproduto')
-        
-        fn = Fornecedor.objects.get(id=fornecedor_id)
-        print(fornecedor_id,nfornecedor,cnpj,fn)
+        nprod = request.POST.get('nproduto')
+        c = request.POST.get('cat_produto')
+        print(c)
+        catp = Categoria.objects.get(id=c)
+        print(catp)
+        preco = request.POST.get('pproduto') # Vem com virgula, tratar isso
+        desc = request.POST.get('dproduto')
+        est = request.POST.get('eproduto')
+        f = request.POST.get('forn_produto')
+        fnp = Fornecedor.objects.get(id=f)
+        pr = Produto.objects.get(id=produto_id)
+        print(preco)
+
+        if ',' in preco:
+                preco = preco.replace(',','.')
 
         # Evita a falha de segurança de alguém poder mexer no sistema pelo inspecionar
-        if fn.usuario.id == request.session['usuario'] and request.method == 'POST':
+        if pr.usuario.id == request.session['usuario'] and request.method == 'POST':
             try:
                 #return HttpResponse('NÃO É NONE PORRA')
-                fn.nome = nfornecedor
-                fn.cnpj = cnpj
-                fn.save()
+                pr.nome = nprod
+                pr.categoria = catp
+                pr.preco = preco
+                pr.descricao = desc
+                pr.estoque = est
+                pr.fornecedor = fnp
+
+                
+                pr.save()
                 return redirect(
                     '/produtos/listaprodutos',
                     {
                         'usuario_logado':request.session.get('usuario'),
-                        'fn':fn
+                        'prods':produtos,
+                        
                     }
                 
                 )

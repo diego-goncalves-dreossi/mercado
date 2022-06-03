@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
-{% load static %}
+<!--{% load static %}-->
 
 {% block 'titulo' %}iMercado - Editar produto{% endblock %}
 {% block 'conteudo' %}
 <main>
     <h1>Editar produto {{pr.id}}</h1>
     
-    <form action="{% url 'produtos:editarprodutobd' %}" method="post" enctype='multipart-form-data'>
+    <form action="{% url 'produtos:editarprodutobd' %}" method="post" enctype='multipart/form-data'>
         {% csrf_token %}
         <input type="hidden" name="produto_id" value="{{pr.id}}">
 
@@ -14,28 +14,32 @@
         <input id="id_image" type="file" class="" value="pr.img.url" Required name="image">-->
 
         <label>Nome:</label>
-        <input type="text"  value="{{pr.nome}}" name="nprod" id="nprod">
+        <input type="text"  value="{{pr.nome}}" name="nproduto" id="nproduto">
         <!--class="form-control"-->
         <label>Categoria:</label>
-        <select style="display: none;" id="cat_prod" class="form-control" name="cat_prod">
+        <select  id="cat_produto"  name="cat_produto">
             {% for cat in categorias %}
               <option value="{{cat.id}}">{{cat.nome}}</option>
             {% endfor %}
         </select>
 
         <label>Preço:</label>
-        <input type="text"  value="{{pr.preco}}" name="pprod" id="pprod">
+        <input type="text"  value="{{pr.preco}}" name="pproduto" id="pproduto">
 
         <label>Descrição:</label>
-        <textarea type="text"  value="{{pr.descricao}}" name="dprod" id="dprod"></textarea>
+        <input type="text"  value="{{pr.descricao}}" name="dproduto" id="dproduto"></input>
 
         <label>Estoque:</label>
-        <input type="text"  value="{{pr.estoque}}" name="eprod" id="eprod">
+        <input type="text"  value="{{pr.estoque}}" name="eproduto" id="eproduto">
 
         <label>Fornecedor:</label>
-        <select style="display: none;" id="forn_prod" class="form-control" name="forn_prod">
+        <select  id="forn_produto"  name="forn_produto">
             {% for forn in fornecedores %}
+              {% if forn == pr.fornecedor %}
+              <option selected value="{{forn.id}}">{{forn.nome}}</option>
+              {% else %}
               <option value="{{forn.id}}">{{forn.nome}}</option>
+              {% endif %}
             {% endfor %}
         </select>
 
@@ -48,5 +52,5 @@
     
 </main>
 
-<script src="{% static 'produtos/js/funcoes2.js' %}"></script>
+<!--<script src="{% static 'produtos/js/funcoes2.js' %}"></script>-->
 {% endblock %}
