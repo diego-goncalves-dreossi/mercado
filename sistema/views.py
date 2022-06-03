@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 from autenticacao.models import Usuario
-from .models import Categoria,Filial,Fornecedor,Pedido,Produto
+from .models import Categoria,Fornecedor,Pedido,Produto
 
 def inicio(request):
     if request.session.get('usuario'):

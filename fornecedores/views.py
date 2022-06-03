@@ -19,34 +19,34 @@ def adFornecedor(request):
 def adFornecedorBD(request):
     if request.session.get('usuario'):
         usuario = Usuario.objects.get(id=request.session['usuario'])
-        
+        fncd = Fornecedor.objects.filter(usuario=usuario)
 
         if request.method == 'POST':
             nfornecedor = request.POST.get('nfornecedor')
             cnpj = request.POST.get('cnpj')
-            logo = request.FILES.get('id_imagem')
-
+            logo = request.FILES['image']
+            print(logo)
             if not nfornecedor or not cnpj:
                 print('Campos vazios')
                 return redirect('/fornecedores/adfornecedor',{'usuario_logado':request.session.get('usuario')})
                 
             else:
-                fn = Fornecedor(nome=nfornecedor,cnpj=cnpj,usuario=usuario)
+                fn = Fornecedor(nome=nfornecedor,cnpj=cnpj,usuario=usuario,img=logo)
 
             try:
-                setor.save()
-                print('Categoria salva')
+                fn.save()
+                print('Fornecedor salva')
                 return redirect(
-                    '/categorias/listacategorias',
+                    '/fornecedores/listafornecedores',
                     {
                         'usuario_logado':request.session.get('usuario'),
-                        'ctgs':ctgs
+                        'fncd':fncd
                     }
                 
                 )
             except Exception as erro:
                 print(erro)
-                return HttpResponse('Erro ao salvar categoria')
+                return HttpResponse('Erro ao salvar fornecedor')
         
 def listaFornecedores(request):
     if request.session.get('usuario'):
@@ -121,24 +121,24 @@ def edtFornecedorBD(request):
 def excluirFornecedor(request):
     if request.session.get('usuario'):
         usuario = Usuario.objects.get(id=request.session['usuario'])
-        categoria_id = request.POST.get('categoria_id')
-        ctgs = Categoria.objects.filter(usuario=usuario)
-        ctg = Categoria.objects.get(id=categoria_id)
+        fncd = Fornecedor.objects.filter(usuario=usuario)
+        fornecedor_id = request.POST.get('fornecedor_id')
+        nfornecedor = request.POST.get('nfornecedor')
+        cnpj = request.POST.get('cnpj')
+        fn = Fornecedor.objects.get(id=fornecedor_id)
         # Evita a falha de segurança de alguém poder mexer no sistema pelo inspecionar
-        if ctg.usuario.id == request.session['usuario']:
+        if fn.usuario.id == request.session['usuario']:
             try:
-                ctg = ctg.delete()
+                fn = fn.delete()
                 return redirect(
-                    '/categorias/listacategorias',
+                    '/fornecedores/listafornecedores',
                     {
                         'usuario_logado':request.session.get('usuario'),
-                        'ctgs':ctgs
+                        'fncd':fncd
                     }
                 
                 )
             except Exception as erro:
                 print(erro)
-                return HttpResponse('Erro ao excluir categoria')
-        else:
-            print(request.method == 'POST')
-            return HttpResponse('request.method')
+                return HttpResponse('Erro ao excluir fornecedor')
+

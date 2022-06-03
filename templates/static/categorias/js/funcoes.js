@@ -3,11 +3,11 @@ function confirmarAdCat(){
 }
 
 (function(){
-    const btnexcat = document.querySelectorAll(".exclusaocat")
+    const btnexcat = document.querySelectorAll(".exclusao")
 
     btnexcat.forEach(btn=>{
         btn.addEventListener('click',(e)=>{
-            const confirmacao = confirm("Tem certeza que quer excluir?");
+            const confirmacao = confirm("Tem certeza que quer excluir categoria?");
             if (!confirmacao){
                 e.preventDefault();
             }

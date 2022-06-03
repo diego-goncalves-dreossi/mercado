@@ -138,6 +138,3 @@ def excluirCategoria(request):
             except Exception as erro:
                 print(erro)
                 return HttpResponse('Erro ao excluir categoria')
-        else:
-            print(request.method == 'POST')
-            return HttpResponse('request.method')

@@ -14,7 +14,8 @@
         <input type="hidden" name="categoria_id" value="{{cat.id}}">
         
         <button><a href="{% url 'categorias:editarcategoria' cat.id %}">Editar</a></button>
-        <input type="submit" value="Excluir" class="btn btn-info exclusaocat">
+        <input type="submit" value="Excluir" class="btn btn-danger exclusao">
+        <a href="{% url 'categorias:listacategorias' %}" class="btn btn-info">Voltar</a>
     </form>
    
 

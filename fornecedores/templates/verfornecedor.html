@@ -16,11 +16,11 @@
         <input type="hidden" name="fornecedor_id" value="{{fn.id}}">
         
         <button><a href="{% url 'fornecedores:editarfornecedor' fn.id %}">Editar</a></button>
-        <input type="submit" value="Excluir" class="btn btn-danger" >
+        <input type="submit" value="Excluir" class="btn btn-danger exclusao" >
         <a href="{% url 'fornecedores:verfornecedor' fn.id %}" class="btn btn-info">Voltar</a>
     </form>
    
-    
-    
 </main>
+
+<script src="{% static 'fornecedores/js/funcoes.js' %}"></script>
 {% endblock %}

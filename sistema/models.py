@@ -16,19 +16,10 @@ class Produto(models.Model):
     def __str__(self):   
         return self.nome
 
-class Filial(models.Model):
-    nome = models.CharField(max_length=50)
-    endereco = models.CharField(max_length=50)
-    usuario = models.ForeignKey(Usuario,on_delete=models.DO_NOTHING)
-    img = models.ImageField(upload_to = 'filiais',null=True,blank=True)
-
-    def __str__(self):   
-        return self.nome
-
 
 class Pedido(models.Model):
     produto = models.ForeignKey(Produto,on_delete=models.DO_NOTHING)
     fornecedor = models.ForeignKey(Fornecedor,on_delete=models.DO_NOTHING)
-    filial = models.ForeignKey(Filial,on_delete=models.DO_NOTHING)
+    filial = models.CharField(max_length=200)
     pag = models.CharField(max_length=20)
     qntnovosprods = models.IntegerField(default=1)

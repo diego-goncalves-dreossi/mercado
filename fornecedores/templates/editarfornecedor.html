@@ -17,9 +17,11 @@
 
         <input type="submit" value="Salvar" class="btn btn-success">
         <a href="{% url 'fornecedores:verfornecedor' fn.id %}" class="btn btn-danger">Cancelar</a>
-        <a href="{% url 'fornecedores:verfornecedor' fn.id %}" class="btn btn-info">Voltar</a>
+        
     </form>
 
     
 </main>
+
+<script src="{% static 'fornecedores/js/funcoes.js' %}"></script>
 {% endblock %}
