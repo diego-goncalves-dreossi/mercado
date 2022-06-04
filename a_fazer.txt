@@ -1,3 +1,3 @@
 - App Pedido
 - CSS
-- Exportar e importar JSON
+- Exportar e importar JSON (No app sistema)
