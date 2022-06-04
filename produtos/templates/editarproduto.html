@@ -43,7 +43,7 @@
             {% endfor %}
         </select>
 
-        <input type="submit" value="Salvar" class="btn btn-success epr">
+        <input type="submit" value="Salvar" class="btn btn-success edpr">
         <a href="{% url 'produtos:verproduto' pr.id %}" class="btn btn-danger">Voltar</a>
         <a href="{% url 'produtos:paginseririmg' pr.id %}" class="btn btn-warning">Nova imagem</a>
         
@@ -52,5 +52,5 @@
     
 </main>
 
-<!--<script src="{% static 'produtos/js/funcoes2.js' %}"></script>-->
+<!--<script src="{% static 'produtos/js/funcoes.js' %}"></script>-->
 {% endblock %}

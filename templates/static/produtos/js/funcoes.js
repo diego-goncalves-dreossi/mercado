@@ -44,7 +44,7 @@ function confirmarAltImg(){
 
 
 (function(){
-    const btnedpr = document.querySelectorAll(".epr")
+    const btnedpr = document.querySelectorAll(".edpr")
 
     btnedpr.forEach(btn=>{
         btn.addEventListener('click',(e)=>{
