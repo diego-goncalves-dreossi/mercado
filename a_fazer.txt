@@ -1,4 +1,3 @@
 - App Pedido
 - CSS
-- JS Produtos e Categoria
 - Exportar e importar JSON
