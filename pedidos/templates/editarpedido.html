@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'titulo' %}iMercado - Editar pedido{% endblock %}
+{% block 'conteudo' %}
+<main>
+    
+    <h1>Editar novo pedido</h1>
+
+    <form action="{% url 'pedidos:pedidobd' %}" method="POST">
+        {% csrf_token %}
+
+        <label>Produto:</label>
+        <select  id="ped_produto" name="ped_produto">
+            {% for prod in produtos %}
+              <option value="{{prod.id}}">{{prod.nome}}</option>
+            {% endfor %}
+        </select>
+
+        <label>Filial:</label>
+        <input type="text" name="filial" id="filial" placeholder="Nome filial">
+
+        <label>Quantidade:</label>
+        <input id="qnt" name="qnt" ></input>
+
+        <label>Status:</label>
+        <select  id="sts_pedido" name="sts_pedido">
+              <option value="Ca">Cancelado</option>
+              <option value="En">Entregue</option>
+              <option value="Ac">A caminho</option>
+              <option value="At">Atrasado</option>
+              <option value="En">Enviado</option>
+        </select>
+
+        <label>Pagamento:</label>
+        <select  id="sts_pedido" name="sts_pedido">
+              <option value="Cr">Crédito</option>
+              <option value="De">Débito</option>
+              <option value="Di">Dinheiro</option>
+              <option value="Cp">Criptomoeda</option>
+        </select>
+
+        <input type="submit" value="Salvar" class="btn btn-success acat">
+    </form>
+
+    
+</main>
+
+<script src="{% static 'categorias/js/funcoes.js' %}"></script>
+{% endblock %}

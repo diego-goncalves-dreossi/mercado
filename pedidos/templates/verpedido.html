@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'titulo' %}iMercado - Pedido{% endblock %}
+{% block 'conteudo' %}
+<main>
+    <h1>Pedido {{ped.id}}</h1>
+    
+    <p>{{ped.produto.nome}}</p>
+    <p>{{ped.filial}}</p>
+    <p>{{ped.pagamento}}</p>
+    <p>{{ped.qntnovosprods}}</p>
+    <p>{{ped.status}}</p>
+
+    <form action="{% url 'categorias:excluircategoria' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="pedido_id" value="{{ped.id}}">
+        
+        <button class="btn btn-success"><a style="color:white" href="{% url 'pedidos:editarpedido' ped.id %}">Editar</a></button>
+        <input type="submit" value="Excluir" class="btn btn-danger ecat">
+        <a href="{% url 'pedidos:listapedidos' %}" class="btn btn-info">Voltar</a>
+    </form>
+   
+
+    
+</main>
+
+<script src="{% static 'categorias/js/funcoes.js' %}"></script>
+{% endblock %}

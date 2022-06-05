@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'titulo' %}iMercado - Pedidos{% endblock %}
+{% block 'head' %}
+
+{% endblock %}
+
+{% block 'conteudo' %}
+<main>
+    <h1>Lista dos pedidos</h1>
+    <ul>
+        {% for ped in pedidos %}
+            <li>
+                <div>
+                    <span><a href="{% url 'pedidos:verpedido' ped.id %}">{{ped.nome}}</a></span>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+    <button><a href="{% url 'pedidos:adpedido' %}">Adicionar</a></button>
+</main>
+{% endblock %}
