@@ -1,3 +1,143 @@
-from django.shortcuts import render
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
+from autenticacao.models import Usuario
+from fornecedores.models import Fornecedor
+from os import remove
 
-# Create your views here.
+"""
+request.session.get('usuario'): Se usuário está logado 
+request.method == 'POST': Se função foi alcançada atraves de um botão, não atraves de escrevendo na barra de pesquisa
+request.session.get('usuario') == cat.usuario.id: Evita a falha de segurança de alguém poder mexer no sistema pelo inspecionar
+"""
+def adPedido(request):
+    if request.session.get('usuario'):
+        return render(request,'adfornecedor.html',{'usuario_logado':request.session.get('usuario')})
+
+def adPedidoBD(request):
+    if request.session.get('usuario'):
+        usuario = Usuario.objects.get(id=request.session['usuario'])
+        fncd = Fornecedor.objects.filter(usuario=usuario)
+
+        if request.method == 'POST':
+            nfornecedor = request.POST.get('nfornecedor')
+            cnpj = request.POST.get('cnpj')
+            logo = request.FILES['image']
+            print(logo)
+            if not nfornecedor or not cnpj:
+                print('Campos vazios')
+                return redirect('/fornecedores/adfornecedor',{'usuario_logado':request.session.get('usuario')})
+                
+            else:
+                fn = Fornecedor(nome=nfornecedor,cnpj=cnpj,usuario=usuario,img=logo)
+
+            try:
+                fn.save()
+                print('Fornecedor salva')
+                return redirect(
+                    '/fornecedores/listafornecedores',
+                    {
+                        'usuario_logado':request.session.get('usuario'),
+                        'fncd':fncd
+                    }
+                
+                )
+            except Exception as erro:
+                print(erro)
+                return HttpResponse('Erro ao salvar fornecedor')
+        
+def listaPedidos(request):
+    if request.session.get('usuario'):
+        usuario = Usuario.objects.get(id=request.session['usuario'])
+        fncd = Fornecedor.objects.filter(usuario=usuario)
+        #return HttpResponse('lISTA FORNECEDORES')
+        return render(
+            request,
+            'fornecedores.html',
+            {
+                'usuario_logado':request.session.get('usuario'),
+                'fncd':fncd
+            }
+        
+        )
+
+def verPedido(request,id):
+    if request.session.get('usuario'):
+        fn = Fornecedor.objects.get(id=id)
+        # Evita a falha de segurança de alguém poder mexer no sistema pelo inspecionar
+        if request.session.get('usuario') == fn.usuario.id: 
+            return render(
+                request,
+                'verfornecedor.html',
+                {
+                    'usuario_logado':request.session.get('usuario'),
+                    'fn':fn
+                }
+            )
+
+def pageditarPedido(request,id):
+        if request.session.get('usuario'):
+            fn = Fornecedor.objects.get(id=id)
+            # Evita a falha de segurança de alguém poder mexer no sistema pelo inspecionar
+            if request.session.get('usuario') == fn.usuario.id: 
+                return render(
+                request,
+                'editarfornecedor.html',
+                {
+                    'usuario_logado':request.session.get('usuario'),
+                    'fn':fn
+                }
+            )
+
+def edtPedidoBD(request):
+    if request.session.get('usuario'):
+        fornecedor_id = request.POST.get('fornecedor_id')
+        nfornecedor = request.POST.get('nfornecedor')
+        cnpj = request.POST.get('cnpj')
+        fn = Fornecedor.objects.get(id=fornecedor_id)
+        print(fornecedor_id,nfornecedor,cnpj,fn)
+
+        # Evita a falha de segurança de alguém poder mexer no sistema pelo inspecionar
+        if fn.usuario.id == request.session['usuario'] and request.method == 'POST':
+            try:
+                #return HttpResponse('NÃO É NONE PORRA')
+                fn.nome = nfornecedor
+                fn.cnpj = cnpj
+                fn.save()
+                return redirect(
+                    '/fornecedores/listafornecedores',
+                    {
+                        'usuario_logado':request.session.get('usuario'),
+                        'fn':fn
+                    }
+                
+                )
+            except Exception as erro:
+                print(erro)
+                return HttpResponse('Erro ao editar fornecedor')
+
+def excluirPedido(request):
+    if request.session.get('usuario'):
+        usuario = Usuario.objects.get(id=request.session['usuario'])
+        fncd = Fornecedor.objects.filter(usuario=usuario)
+        fornecedor_id = request.POST.get('fornecedor_id')
+        imagem_url = request.POST.get('imagem_url')
+        nfornecedor = request.POST.get('nfornecedor')
+        cnpj = request.POST.get('cnpj')
+        fn = Fornecedor.objects.get(id=fornecedor_id)
+        # Evita a falha de segurança de alguém poder mexer no sistema pelo inspecionar
+        if fn.usuario.id == request.session['usuario']:
+            try:
+                fn = fn.delete()
+                remove(f'./{imagem_url}')
+                return redirect(
+                    '/fornecedores/listafornecedores',
+                    {
+                        'usuario_logado':request.session.get('usuario'),
+                        'fncd':fncd
+                    }
+                
+                )
+            except Exception as erro:
+                print(erro)
+                return HttpResponse('Erro ao excluir fornecedor')
+

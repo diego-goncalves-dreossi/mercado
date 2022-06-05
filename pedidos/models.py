@@ -5,8 +5,21 @@ from produtos.models import Produto
 
 
 class Pedido(models.Model):
-    escolhas_pag = ['Crédito','Débito','Dinheiro','Criptomoeda']
-    status_opc = ['Cancelado','Entregue','A caminho','Atrasado','Enviado']
+    escolhas_pag = (
+        ('Cr','Crédito'),
+        ('De','Débito'),
+        ('Di','Dinheiro'),
+        ('Cr','Criptomoeda'),
+    )
+
+    status_opc = (
+        ('Ca','Cancelado'),
+        ('En','Entregue'),
+        ('Ac','A caminho'),
+        ('At','Atrasado'),
+        ('En','Enviado')
+    )
+    
     produto = models.ForeignKey(Produto,on_delete=models.DO_NOTHING)
     filial = models.CharField(max_length=200)
     pagamento = models.CharField(max_length=20,choices=escolhas_pag)
