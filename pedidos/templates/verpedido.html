@@ -42,11 +42,11 @@
         <span>Enviado</span>
     {% endif %}
 
-    <form action="{% url 'categorias:excluircategoria' %}" method="post">
+    <form action="{% url 'pedidos:excluirpedido' %}" method="post">
         {% csrf_token %}
         <input type="hidden" name="pedido_id" value="{{ped.id}}">
         
-        <button class="btn btn-success"><a style="color:white" href="{% url 'pedidos:editarpedido' ped.id %}">Editar</a></button>
+        <a class="btn btn-success" style="color:white" href="{% url 'pedidos:editarpedido' ped.id %}">Editar</a>
         <input type="submit" value="Excluir" class="btn btn-danger ecat">
         <a href="{% url 'pedidos:listapedidos' %}" class="btn btn-info">Voltar</a>
     </form>
@@ -55,5 +55,5 @@
     
 </main>
 
-<script src="{% static 'categorias/js/funcoes.js' %}"></script>
+<script src="{% static 'pedidos/js/funcoes.js' %}"></script>
 {% endblock %}

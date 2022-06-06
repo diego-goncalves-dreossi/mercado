@@ -7,13 +7,13 @@
     
     <h1>Editar pedido {{ped.id}}</h1>
 
-    <form action="{% url 'pedidos:pedidobd' %}" method="POST">
+    <form action="{% url 'pedidos:editarpedidobd' %}" method="POST">
         {% csrf_token %}
 
 
         <h6>Produto:</h6>
         <p>{{ped.produto.nome}}</p>
-
+        <input type="hidden" name="ped_produto" value="{{ped.produto.id}}">
         <input type="hidden" name="pedido_id" value="{{ped.id}}">
         <label>Filial:</label>
         <input type="text" name="filial" id="filial" placeholder="Nome filial" value="{{ped.filial}}">
@@ -34,11 +34,11 @@
 
         <label>Pagamento:</label>
         <select  id="pag_pedido" name="pag_pedido">
-            {% for p in ped.escolhas_pag %}
-                {% if p.0 == ped.pagamento %}
-                    <option value="{{p.0}}" selected>{{p.1}}</option>
+            {% for e in ped.escolhas_pag %}
+                {% if e.0 == ped.pagamento %}
+                    <option value="{{e.0}}" selected>{{e.1}}</option>
                 {% else %}
-                    <option value="{{p.0}}">{{p.1}}</option>
+                    <option value="{{e.0}}">{{e.1}}</option>
                 {% endif %}
             {% endfor%}
         </select>
@@ -49,5 +49,5 @@
     
 </main>
 
-<script src="{% static 'categorias/js/funcoes.js' %}"></script>
+<script src="{% static 'pedidos/js/funcoes.js' %}"></script>
 {% endblock %}

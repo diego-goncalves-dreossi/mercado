@@ -26,7 +26,7 @@
         <input type="hidden" name="produto_id" value="{{pr.id}}">
         <input type="hidden" name="imagem_prod" value="{{pr.img.url}}">
         
-        <button class="btn btn-success"><a style="color:white; " href="{% url 'produtos:editarproduto' pr.id %}">Editar</a></button>
+        <a class="btn btn-success" style="color:white; " href="{% url 'produtos:editarproduto' pr.id %}">Editar</a>
         <input type="submit" value="Excluir" class="btn btn-danger epr" >
         <a href="{% url 'produtos:listaprodutos' %}" class="btn btn-info">Voltar</a>
     </form>

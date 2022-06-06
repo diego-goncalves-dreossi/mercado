@@ -9,7 +9,7 @@ class Pedido(models.Model):
         ('Cr','Crédito',),
         ('De','Débito',),
         ('Di','Dinheiro',),
-        ('Cr','Criptomoeda',),
+        ('Cp','Criptomoeda',),
     )
 
     status_opc = (

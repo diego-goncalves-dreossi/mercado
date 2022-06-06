@@ -48,7 +48,7 @@ function confirmarAltImg(){
 
     btnedpr.forEach(btn=>{
         btn.addEventListener('click',(e)=>{
-            const confirmacao = confirm("Editar fornecedor?");
+            const confirmacao = confirm("Editar produto?");
             if (!confirmacao){
                 e.preventDefault();
             }
