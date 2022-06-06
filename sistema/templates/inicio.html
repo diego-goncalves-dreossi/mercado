@@ -1,33 +1,35 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% block 'head' %}
+    <link rel="stylesheet" type="text/css" href="{% static 'sistema/css/estilo.css' %}">
+{% endblock %}
 
 {% block 'conteudo' %}
 <main>
-    <h1>Página Inicial do iMercado</h1>
-
-    <p>Veja abaixo os produtos e mercados disponíveis</p>
     <div>
-        <div>
-            <h3>Pedidos</h3>
-            <img src="{% static 'sistema/img/setabaixo.svg' %}" alt="seta baixo">
+        <h1>Página Inicial do iMercado</h1>
+        <p>Veja abaixo os produtos e mercados disponíveis</p>
+        <div >
+            <div class="aperte">
+                <h3>Pedidos</h3>
+                <img class="seta" src="{% static 'sistema/img/setabaixo.svg' %}" alt="seta baixo">
+            </div>
+            <section>Lista dos pedidos</section>
         </div>
-        <section>Lista dos pedidos</section>
-    </div>
-    <div>
-        <div>
-            <h3>Produtos</h3>
-            <img src="{% static 'sistema/img/setabaixo.svg' %}" alt="seta baixo">
+        <div >
+            <div class="aperte">
+                <h3>Produtos</h3>
+                <img class="seta" src="{% static 'sistema/img/setabaixo.svg' %}" alt="seta baixo">
+            </div>
+            <section>Lista dos produtos</section>
         </div>
-        <section>Lista dos produtos</section>
-    </div>
-
-    <div>
-        <div>
-            <h3>Mercados</h3>
-            <img src="{% static 'sistema/img/setabaixo.svg' %}" alt="seta baixo">
+        <div >
+            <div class="aperte">
+                <h3>Mercados</h3>
+                <img class="seta" src="{% static 'sistema/img/setabaixo.svg' %}" alt="seta baixo">
+            </div>
+            <section>Lista dos mercados</section>
         </div>
-        <section>Lista dos mercados</section>
     </div>
 </main>
 {% endblock %}
