@@ -6,11 +6,41 @@
 <main>
     <h1>Pedido {{ped.id}}</h1>
     
+    <h6>Produto:</h6>
     <p>{{ped.produto.nome}}</p>
+    <h6>Filial:</h6>
     <p>{{ped.filial}}</p>
-    <p>{{ped.pagamento}}</p>
+    <h6>Pagamento:</h6>
+    {% if ped.pagamento == 'Cr' %}
+        <span>Crédito</span>
+    
+    {% elif ped.pagamento == 'Cp' %}
+        <span>Criptomoeda</span>
+    
+    {% elif ped.pagamento == 'De' %}
+        <span>Débito</span>
+    
+    {% elif ped.pagamento == 'Di' %}
+        <span>Dinheiro</span>
+    {% endif %}
+    <h6>Quantidade do pedido:</h6>
     <p>{{ped.qntnovosprods}}</p>
-    <p>{{ped.status}}</p>
+    <h6>Status: </h6>
+    {% if ped.status == 'Ca' %}
+        <span>Cancelado</span>
+    
+    {% elif ped.status == 'En' %}
+        <span>Entregue</span>
+    
+    {% elif ped.status == 'Ac' %}
+        <span>A caminho</span>
+    
+    {% elif ped.status == 'At' %}
+        <span>Atrasado</span>
+    
+    {% elif ped.status == 'Ev' %}
+        <span>Enviado</span>
+    {% endif %}
 
     <form action="{% url 'categorias:excluircategoria' %}" method="post">
         {% csrf_token %}

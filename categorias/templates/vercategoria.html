@@ -6,7 +6,9 @@
 <main>
     <h1>Categoria {{cat.id}}</h1>
     
+    <h6>Nome:</h6>
     <p>{{cat.nome}}</p>
+    <h6>Descrição:</h6>
     <p>{{cat.descricao}}</p>
 
     <form action="{% url 'categorias:excluircategoria' %}" method="post">

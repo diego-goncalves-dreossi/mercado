@@ -6,11 +6,17 @@
 <main>
     <h1>Produto {{pr.id}}</h1>
     <img src="{{pr.img.url}}" alt="logo">
+    <h6>Nome:</h6>
     <p>{{pr.nome}}</p>
+    <h6>Categoria:</h6>
     <p>{{pr.categoria.nome}}</p>
+    <h6>Preço:</h6>
     <p>{{pr.preco}}</p>
+    <h6>Descrição:</h6>
     <p>{{pr.descricao}}</p>
+    <h6>Estoque</h6>
     <p>{{pr.estoque}}</p>
+    <h6>Fornecedor:</h6>
     <p>{{pr.fornecedor.nome}}</p>
 
     <form action="{% url 'produtos:excluirproduto' %}" method="post">

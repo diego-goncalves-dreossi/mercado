@@ -6,7 +6,9 @@
 <main>
     <h1>Fornecedor {{fn.id}}</h1>
     
+    <h6>Nome:</h6>
     <p>{{fn.nome}}</p>
+    <h6>CNPJ:</h6>
     <p>{{fn.cnpj}}</p>
 
     <form action="{% url 'fornecedores:excluirfornecedor' %}" method="post">

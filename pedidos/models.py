@@ -6,10 +6,10 @@ from produtos.models import Produto
 
 class Pedido(models.Model):
     escolhas_pag = (
-        ('Cr','Crédito'),
-        ('De','Débito'),
-        ('Di','Dinheiro'),
-        ('Cr','Criptomoeda'),
+        ('Cr','Crédito',),
+        ('De','Débito',),
+        ('Di','Dinheiro',),
+        ('Cr','Criptomoeda',),
     )
 
     status_opc = (
@@ -17,7 +17,7 @@ class Pedido(models.Model):
         ('En','Entregue'),
         ('Ac','A caminho'),
         ('At','Atrasado'),
-        ('En','Enviado')
+        ('Ev','Enviado')
     )
     
     produto = models.ForeignKey(Produto,on_delete=models.DO_NOTHING)
