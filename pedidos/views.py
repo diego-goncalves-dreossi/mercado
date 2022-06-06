@@ -3,7 +3,8 @@ from django.shortcuts import redirect, render
 from autenticacao.models import Usuario
 from fornecedores.models import Fornecedor
 from os import remove
-
+from pedidos.models import Pedido
+from produtos.models import Produto
 """
 request.session.get('usuario'): Se usuário está logado 
 request.method == 'POST': Se função foi alcançada atraves de um botão, não atraves de escrevendo na barra de pesquisa
@@ -11,66 +12,78 @@ request.session.get('usuario') == cat.usuario.id: Evita a falha de segurança de
 """
 def adPedido(request):
     if request.session.get('usuario'):
-        return render(request,'adfornecedor.html',{'usuario_logado':request.session.get('usuario')})
+        usuario = Usuario.objects.get(id=request.session['usuario'])
+        produtos = Produto.objects.filter(usuario=usuario)
+        return render(request,'adpedido.html',{'usuario_logado':request.session.get('usuario'),'produtos':produtos})
 
 def adPedidoBD(request):
     if request.session.get('usuario'):
         usuario = Usuario.objects.get(id=request.session['usuario'])
-        fncd = Fornecedor.objects.filter(usuario=usuario)
+        produtos = Produto.objects.filter(usuario=usuario)
+        pedidos = Pedido.objects.filter(usuario=usuario)
 
         if request.method == 'POST':
-            nfornecedor = request.POST.get('nfornecedor')
-            cnpj = request.POST.get('cnpj')
-            logo = request.FILES['image']
-            print(logo)
-            if not nfornecedor or not cnpj:
+            p = request.POST.get('ped_produto')
+            produto = Produto.objects.get(id=p)
+            filial = request.POST.get('filial')
+            qnt = request.POST.get('qnt')
+            pagamento = request.POST.get('pag_pedido')
+            status = request.POST.get('sts_pedido')
+
+            if not filial or not qnt or not pagamento:
                 print('Campos vazios')
-                return redirect('/fornecedores/adfornecedor',{'usuario_logado':request.session.get('usuario')})
+                return redirect('/pedidos/adpedido',{'usuario_logado':request.session.get('usuario')})
                 
             else:
-                fn = Fornecedor(nome=nfornecedor,cnpj=cnpj,usuario=usuario,img=logo)
+                pedido = Pedido(produto=produto,filial=filial,pagamento=pagamento,qntnovosprods=qnt,status=status,usuario=usuario)
 
             try:
-                fn.save()
-                print('Fornecedor salva')
+                pedido.save()
+                print('Pedido salvo')
+
+                if status == 'Entregue' or status == 'En':
+                    pa = Produto.objects.get(id=p)
+                    pa.estoque = qnt
+                    pa.save()
+
                 return redirect(
-                    '/fornecedores/listafornecedores',
+                    '/pedidos/listapedidos',
                     {
                         'usuario_logado':request.session.get('usuario'),
-                        'fncd':fncd
+                        'pedidos':pedidos
                     }
                 
                 )
             except Exception as erro:
                 print(erro)
-                return HttpResponse('Erro ao salvar fornecedor')
+                return HttpResponse('Erro ao salvar pedido')
         
 def listaPedidos(request):
     if request.session.get('usuario'):
         usuario = Usuario.objects.get(id=request.session['usuario'])
-        fncd = Fornecedor.objects.filter(usuario=usuario)
-        #return HttpResponse('lISTA FORNECEDORES')
+        pedidos = Pedido.objects.filter(usuario=usuario)
+    
         return render(
             request,
-            'fornecedores.html',
+            'pedidos.html',
             {
                 'usuario_logado':request.session.get('usuario'),
-                'fncd':fncd
+                'pedidos':pedidos
             }
         
         )
 
 def verPedido(request,id):
     if request.session.get('usuario'):
-        fn = Fornecedor.objects.get(id=id)
+        pedido = Pedido.objects.get(id=id)
         # Evita a falha de segurança de alguém poder mexer no sistema pelo inspecionar
-        if request.session.get('usuario') == fn.usuario.id: 
+        if request.session.get('usuario') == pedido.usuario.id: 
             return render(
                 request,
-                'verfornecedor.html',
+                'verpedido.html',
                 {
                     'usuario_logado':request.session.get('usuario'),
-                    'fn':fn
+                    'ped':pedido
                 }
             )
 

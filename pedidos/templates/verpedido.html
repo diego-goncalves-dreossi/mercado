@@ -16,7 +16,7 @@
         {% csrf_token %}
         <input type="hidden" name="pedido_id" value="{{ped.id}}">
         
-        <button class="btn btn-success"><a style="color:white" href="{% url 'pedidos:editarpedido' ped.id %}">Editar</a></button>
+        <button class="btn btn-success"><a style="color:white" href="">Editar</a></button>
         <input type="submit" value="Excluir" class="btn btn-danger ecat">
         <a href="{% url 'pedidos:listapedidos' %}" class="btn btn-info">Voltar</a>
     </form>

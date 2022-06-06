@@ -13,7 +13,7 @@
         {% for ped in pedidos %}
             <li>
                 <div>
-                    <span><a href="{% url 'pedidos:verpedido' ped.id %}">{{ped.nome}}</a></span>
+                    <span><a href="{% url 'pedidos:verpedido' ped.id %}">Pedido {{ped.id}}</a></span>
                 </div>
             </li>
         {% endfor %}
