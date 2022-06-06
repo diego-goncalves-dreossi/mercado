@@ -3,21 +3,26 @@
 
 {% block 'titulo' %}iMercado - Fornecedores{% endblock %}
 {% block 'head' %}
-
+    <link rel="stylesheet" type="text/css" href="{% static 'fornecedores/css/estilo.css' %}">
 {% endblock %}
 
 {% block 'conteudo' %}
 <main>
-    <h1>Lista dos Fornecedores</h1>
-    <ul>
-        {% for fn in fncd %}
-            <li>
-                <div>
-                    <span><a href="{% url 'fornecedores:verfornecedor' fn.id %}">{{fn.nome}}</a></span>
-                </div>
-            </li>
-        {% endfor %}
-    </ul>
-    <a class="btn btn-success" href="{% url 'fornecedores:adfornecedor' %}">Adicionar</a>
+    <div class="com-borda">
+        <h1>Lista dos Fornecedores</h1>
+        <ul>
+            {% for fn in fncd %}
+                <li>
+                    <div>
+                        <span><a href="{% url 'fornecedores:verfornecedor' fn.id %}">{{fn.nome}}</a></span>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <div class="botoes">
+            <a class="btn btn-success" href="{% url 'fornecedores:adfornecedor' %}">Adicionar</a>
+            <a href="{% url 'sistema:inicio' %}" class="btn btn-info">Voltar</a>
+        </div>
+    </div>
 </main>
 {% endblock %}

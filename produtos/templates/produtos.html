@@ -3,21 +3,26 @@
 
 {% block 'titulo' %}iMercado - Produtos{% endblock %}
 {% block 'head' %}
-
+    <link rel="stylesheet" type="text/css" href="{% static 'produtos/css/estilo.css' %}">
 {% endblock %}
 
 {% block 'conteudo' %}
 <main>
-    <h1>Lista dos Produtos</h1>
-    <ul>
-        {% for pr in prods %}
-            <li>
-                <div>
-                    <span><a href="{% url 'produtos:verproduto' pr.id %}">{{pr.nome}}</a></span>
-                </div>
-            </li>
-        {% endfor %}
-    </ul>
-    <a class="btn btn-success" href="{% url 'produtos:adproduto' %}">Adicionar</a>
+    <div class="com-borda">
+        <h1>Lista dos Produtos</h1>
+        <ul>
+            {% for pr in prods %}
+                <li>
+                    <div>
+                        <span><a href="{% url 'produtos:verproduto' pr.id %}">{{pr.nome}}</a></span>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <div class="botoes">
+            <a class="btn btn-success" href="{% url 'produtos:adproduto' %}">Adicionar</a>
+            <a href="{% url 'sistema:inicio' %}" class="btn btn-info">Voltar</a>
+        </div>
+    </div>
 </main>
 {% endblock %}
