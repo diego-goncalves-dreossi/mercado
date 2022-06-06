@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block 'titulo' %}Login{% endblock 'titulo' %}
-
+{% block 'head' %}
+    <link rel="stylesheet" type="text/css" href="{% static 'autenticacao/css/estilo.css' %}">
+{% endblock %}
 
 {% block 'conteudo' %}
 
@@ -22,8 +25,8 @@
     <div class="row">
 
         <div class="col-md-3"></div>
-        <div class="col-md">
-            Login
+        <div class="col-md caixa">
+            <strong>Login</strong>
             <hr>
             <form method="POST" action="{% url 'autenticacao:valida_login' %}">
                 {% csrf_token %}
@@ -34,8 +37,10 @@
                 <label>Senha</label>
                 <input name="senha"class="form-control" type="password" placeholder="Senha...">
                 <br>
-                <input class="btn btn-info btn-lg" type="submit" value="Logar">
-                <a href="{% url 'autenticacao:cadastro' %}" class="btn btn-warning btn-lg">Cadastro</a>
+                <div class="botoes">
+                    <input class="btn btn-info btn-lg" type="submit" value="Logar">
+                    <a href="{% url 'autenticacao:cadastro' %}" class="btn btn-warning btn-lg">Cadastro</a>
+                </div>
                 <hr>
 
             </form>

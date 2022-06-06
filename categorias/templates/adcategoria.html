@@ -2,20 +2,24 @@
 {% load static %}
 
 {% block 'titulo' %}iMercado - Novo categorias{% endblock %}
+{% block 'head' %}
+    <link rel="stylesheet" type="text/css" href="{% static 'categorias/css/estilo.css' %}">
+{% endblock %}
+
 {% block 'conteudo' %}
 <main>
     
-    <h1>Adicionar nova categoria</h1>
-
-    <form action="{% url 'categorias:categoriasbd' %}" method="POST">
-        {% csrf_token %}
-        <label>Nome:</label>
-        <input type="text" name="ncategoria" id="ncategoria" placeholder="Nome categoria">
-
-        <label>Descrição:</label>
-        <textarea id="dcategoria" name="dcategoria" rows="2" cols="30"></textarea>
-        <input type="submit" value="Salvar" class="btn btn-success acat">
-    </form>
+    <div class="com-borda">
+        <h1>Adicionar nova categoria</h1>
+        <form action="{% url 'categorias:categoriasbd' %}" method="POST">
+            {% csrf_token %}
+            <label>Nome:</label>
+            <input type="text" name="ncategoria" id="ncategoria" placeholder="Nome categoria">
+            <label>Descrição:</label>
+            <textarea id="dcategoria" name="dcategoria" rows="2" cols="30"></textarea>
+            <input type="submit" value="Salvar" class="btn btn-success acat">
+        </form>
+    </div>
 
     
 </main>

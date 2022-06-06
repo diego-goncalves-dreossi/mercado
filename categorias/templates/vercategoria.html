@@ -2,6 +2,9 @@
 {% load static %}
 
 {% block 'titulo' %}iMercado - Categoria{% endblock %}
+{% block 'head' %}
+    <link rel="stylesheet" type="text/css" href="{% static 'categorias/css/estilo.css' %}">
+{% endblock %}
 {% block 'conteudo' %}
 <main>
     <h1>Categoria {{cat.id}}</h1>

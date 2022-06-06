@@ -1,0 +1,44 @@
+body{
+    background-color: rgb(214, 128, 128);
+}
+
+main{
+    margin-top: 100px;
+}
+
+.botoes{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+strong{
+    font-size: 50px;
+    color: crimson;
+}
+
+.caixa{
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid rgb(90, 18, 18);
+    box-shadow: 10px 10px 5px rgb(86, 33, 33);;
+}
+
+.caixa-cadastro{
+    width:40%;
+    margin-top: 100px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid rgb(90, 18, 18);
+    box-shadow: 10px 10px 5px rgb(86, 33, 33);;
+}
+
+.corpo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
