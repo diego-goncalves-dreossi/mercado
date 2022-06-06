@@ -3,21 +3,26 @@
 
 {% block 'titulo' %}iMercado - Categorias{% endblock %}
 {% block 'head' %}
-
+<link rel="stylesheet" type="text/css" href="{% static 'categorias/css/estilo.css' %}">
 {% endblock %}
 
 {% block 'conteudo' %}
 <main>
-    <h1>Lista dos categorias</h1>
-    <ul>
-        {% for ct in ctgs %}
-            <li>
-                <div>
-                    <span><a href="{% url 'categorias:vercategoria' ct.id %}">{{ct.nome}}</a></span>
-                </div>
-            </li>
-        {% endfor %}
-    </ul>
-    <a class="btn btn-success" href="{% url 'categorias:adcategoria' %}">Adicionar</a>
+    <div class="com-borda">
+        <h1>Lista dos categorias</h1>
+        <ul>
+            {% for ct in ctgs %}
+                <li>
+                    <div>
+                        <span><a href="{% url 'categorias:vercategoria' ct.id %}">{{ct.nome}}</a></span>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <div class="botoes">
+            <a class="btn btn-success" href="{% url 'categorias:adcategoria' %}">Adicionar</a>
+            <a href="{% url 'sistema:inicio' %}" class="btn btn-info">Voltar</a>
+        </div>
+    </div>
 </main>
 {% endblock %}

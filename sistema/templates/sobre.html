@@ -3,13 +3,17 @@
 
 {% block 'titulo' %}iMercado - Sobre{% endblock %}
 {% block 'head' %}
-
+<link rel="stylesheet" type="text/css" href="{% static 'sistema/css/sobre.css' %}">
 {% endblock %}
 
 {% block 'conteudo' %}
 <main>
-    <div>
-        <h1>Sobre</h1>
+    <div class="com-borda">
+        
+        <div class="perfil">
+            <h1>Sobre</h1>
+            <img src="{% static 'sistema/img/foto.png' %}" alt="Foto Desenvolvedor">
+        </div>
         <h6>Desenvolvedor:</h6>
         <p>Diego Dreossi</p>
         <h6>RA:</h6>
@@ -18,7 +22,7 @@
         <h6>Descrição:</h6>
         <p>O presente sistema serve para catalogar o estoque de produtos de uma franquia de supermercados.</p>
         <p>Podemos cadastrar produtos, fornecedores,  filiais da franquia e pedidos de produtos.</p>
-        <P>Controle o estoque de sua rede conosco.</P>
+        <P>Controle o estoque de sua rede e faça seus pedidos conosco.</P>
     </div>
 </main>
 {% endblock %}

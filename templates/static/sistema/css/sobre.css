@@ -1,0 +1,37 @@
+main{
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.com-borda{
+    border: 1px solid black;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow:10px 10px 5px rgb(86, 33, 33);
+    background-color:rgb(246, 237, 223);
+}
+
+main img{
+    height: 150px;
+    width: 150px;
+    float: right;
+}
+
+h1{
+    font-size: 50px;
+    float: left;
+}
+
+h6{
+    font-size: 20px;
+}
+
+
+.perfil{
+    display: flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
