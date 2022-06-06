@@ -3,22 +3,66 @@
 
 {% block 'titulo' %}iMercado - Pedidos{% endblock %}
 {% block 'head' %}
-
+    <link rel="stylesheet" type="text/css" href="{% static 'pedidos/css/estilo.css' %}">
 {% endblock %}
 
 {% block 'conteudo' %}
 <main>
-    <h1>Lista dos pedidos</h1>
-    <ul>
-        {% for ped in pedidos %}
-            <li>
-                <div>
-                    <span><a href="{% url 'pedidos:verpedido' ped.id %}">Pedido {{ped.id}}</a></span>
-                </div>
-            </li>
-        {% endfor %}
-    </ul>
-    <a class="btn btn-success" href="{% url 'pedidos:adpedido' %}">Adicionar</a>
-    <a href="{% url 'sistema:inicio' %}" class="btn btn-info">Voltar</a>
+    <div>
+        <h1>Lista dos pedidos</h1>
+       
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Pedido</th>
+                    <th scope="col">Produto</th>
+                    <th scope="col">Foto</th>
+                    <th scope="col">Filial</th>
+                    <th scope="col">Pagamento</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ped in pedidos %}
+                <tr>
+                    <td><a href="{% url 'pedidos:verpedido' ped.id %}">{{ped.id}}</a></td>
+                    <td>{{ped.produto.nome}}</td>
+                    <td><img class="foto-ped" src="{{ped.produto.img.url}}" alt="logo"></td>
+                    <td>{{ped.filial}}</td>
+                    {% if ped.pagamento == 'Cr' %}
+                        <td>Crédito</td>
+                    {% elif ped.pagamento == 'Cp' %}
+                        <td>Criptomoeda</td>
+        
+                    {% elif ped.pagamento == 'De' %}
+                        <td>Débito</td>
+        
+                    {% elif ped.pagamento == 'Di' %}
+                        <td>Dinheiro</td>
+                    {% endif %}
+                    {% if ped.status == 'Ca' %}
+                        <td>Cancelado</td>
+        
+                    {% elif ped.status == 'En' %}
+                        <td>Entregue</td>
+        
+                    {% elif ped.status == 'Ac' %}
+                        <td>A caminho</td>
+        
+                    {% elif ped.status == 'At' %}
+                        <td>Atrasado</td>
+        
+                    {% elif ped.status == 'Ev' %}
+                        <td>Enviado</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="botoes">
+            <a class="btn btn-success" href="{% url 'pedidos:adpedido' %}">Adicionar</a>
+            <a href="{% url 'sistema:inicio' %}" class="btn btn-info">Voltar</a>
+        </div>
+    </div>
 </main>
 {% endblock %}

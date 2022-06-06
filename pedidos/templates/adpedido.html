@@ -32,10 +32,13 @@
 
         <label>Pagamento:</label>
         <select  id="pag_pedido" name="pag_pedido">
-              <option value="Cr">Crédito</option>
-              <option value="De">Débito</option>
-              <option value="Di">Dinheiro</option>
-              <option value="Cp">Criptomoeda</option>
+            {% for e in ped.escolhas_pag %}
+                {% if e.0 == ped.pagamento %}
+                    <option value="{{e.0}}" selected>{{e.1}}</option>
+                {% else %}
+                    <option value="{{e.0}}">{{e.1}}</option>
+                {% endif %}
+            {% endfor%}
         </select>
 
         <input type="submit" value="Salvar" class="btn btn-success acat">

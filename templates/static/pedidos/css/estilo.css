@@ -1,0 +1,44 @@
+main{
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+main h1{
+    color: rgb(207, 104, 40);
+}
+
+.com-borda{
+    border: 1px solid black;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow:10px 10px 5px rgb(86, 33, 33);
+    background-color:rgb(246, 237, 223);
+}
+
+body a{
+    text-decoration: none;
+    color: rgb(131, 35, 35);
+}
+
+body a:hover{
+    color: red;
+}
+
+.botoes{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+ul li{
+    font-size: 20px;
+}
+
+.foto-ped{
+    height: 40px;
+    width: 40px;
+}
