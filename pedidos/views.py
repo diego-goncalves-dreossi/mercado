@@ -14,7 +14,8 @@ def adPedido(request):
     if request.session.get('usuario'):
         usuario = Usuario.objects.get(id=request.session['usuario'])
         produtos = Produto.objects.filter(usuario=usuario)
-        return render(request,'adpedido.html',{'usuario_logado':request.session.get('usuario'),'produtos':produtos})
+        ped = Pedido.objects.all()
+        return render(request,'adpedido.html',{'usuario_logado':request.session.get('usuario'),'produtos':produtos,'ped':ped[0]})
 
 def adPedidoBD(request):
     if request.session.get('usuario'):
@@ -89,35 +90,40 @@ def verPedido(request,id):
 
 def pageditarPedido(request,id):
         if request.session.get('usuario'):
-            fn = Fornecedor.objects.get(id=id)
+            ped = Pedido.objects.get(id=id)
+            print(ped.status)
             # Evita a falha de segurança de alguém poder mexer no sistema pelo inspecionar
-            if request.session.get('usuario') == fn.usuario.id: 
+            if request.session.get('usuario') == ped.usuario.id: 
                 return render(
                 request,
-                'editarfornecedor.html',
+                'editarpedido.html',
                 {
                     'usuario_logado':request.session.get('usuario'),
-                    'fn':fn
+                    'ped':ped
                 }
             )
 
 def edtPedidoBD(request):
     if request.session.get('usuario'):
-        fornecedor_id = request.POST.get('fornecedor_id')
-        nfornecedor = request.POST.get('nfornecedor')
-        cnpj = request.POST.get('cnpj')
-        fn = Fornecedor.objects.get(id=fornecedor_id)
-        print(fornecedor_id,nfornecedor,cnpj,fn)
+        usuario = Usuario.objects.get(id=request.session['usuario'])
+        pedido_id = request.POST.get('pedido_id')
+        p = request.POST.get('ped_produto')
+        produto = Produto.objects.get(id=p)
+        filial = request.POST.get('filial')
+        qnt = request.POST.get('qnt')
+        pagamento = request.POST.get('pag_pedido')
+        status = request.POST.get('sts_pedido')
+        pedidos = Pedido.objects.filter(usuario=usuario)
+        pe = Pedido.objects.get(id=pedido_id)
 
         # Evita a falha de segurança de alguém poder mexer no sistema pelo inspecionar
         if fn.usuario.id == request.session['usuario'] and request.method == 'POST':
             try:
-                #return HttpResponse('NÃO É NONE PORRA')
-                fn.nome = nfornecedor
-                fn.cnpj = cnpj
+                
+                
                 fn.save()
                 return redirect(
-                    '/fornecedores/listafornecedores',
+                    '/pedidos/listapedidos',
                     {
                         'usuario_logado':request.session.get('usuario'),
                         'fn':fn
@@ -126,7 +132,7 @@ def edtPedidoBD(request):
                 )
             except Exception as erro:
                 print(erro)
-                return HttpResponse('Erro ao editar fornecedor')
+                return HttpResponse('Erro ao editar pedido')
 
 def excluirPedido(request):
     if request.session.get('usuario'):

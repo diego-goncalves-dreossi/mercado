@@ -13,11 +13,11 @@ class Pedido(models.Model):
     )
 
     status_opc = (
-        ('Ca','Cancelado'),
-        ('En','Entregue'),
         ('Ac','A caminho'),
+        ('Ev','Enviado'),
+        ('En','Entregue'),
         ('At','Atrasado'),
-        ('Ev','Enviado')
+        ('Ca','Cancelado'),
     )
     
     produto = models.ForeignKey(Produto,on_delete=models.DO_NOTHING)
@@ -28,4 +28,4 @@ class Pedido(models.Model):
     usuario = models.ForeignKey(Usuario,on_delete=models.DO_NOTHING,default=1)
 
     def __str__(self):   
-        return f'Pedido {self.nome}'
+        return f'Pedido {self.id}'

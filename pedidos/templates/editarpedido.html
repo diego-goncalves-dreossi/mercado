@@ -5,42 +5,45 @@
 {% block 'conteudo' %}
 <main>
     
-    <h1>Editar novo pedido</h1>
+    <h1>Editar pedido {{ped.id}}</h1>
 
     <form action="{% url 'pedidos:pedidobd' %}" method="POST">
         {% csrf_token %}
 
-        <label>Produto:</label>
-        <select  id="ped_produto" name="ped_produto">
-            {% for prod in produtos %}
-              <option value="{{prod.id}}">{{prod.nome}}</option>
-            {% endfor %}
-        </select>
 
+        <h6>Produto:</h6>
+        <p>{{ped.produto.nome}}</p>
+
+        <input type="hidden" name="pedido_id" value="{{ped.id}}">
         <label>Filial:</label>
-        <input type="text" name="filial" id="filial" placeholder="Nome filial">
+        <input type="text" name="filial" id="filial" placeholder="Nome filial" value="{{ped.filial}}">
 
         <label>Quantidade:</label>
-        <input id="qnt" name="qnt" ></input>
+        <input id="qnt" name="qnt" value="{{ped.qntnovosprods}}" ></input>
 
         <label>Status:</label>
         <select  id="sts_pedido" name="sts_pedido">
-              <option value="Ca">Cancelado</option>
-              <option value="En">Entregue</option>
-              <option value="Ac">A caminho</option>
-              <option value="At">Atrasado</option>
-              <option value="En">Enviado</option>
+             {% for p in ped.status_opc %}
+                {% if p.0 == ped.status %}
+                    <option value="{{p.0}}" selected>{{p.1}}</option>
+                {% else %}
+                    <option value="{{p.0}}">{{p.1}}</option>
+                {% endif %}
+             {% endfor%}
         </select>
 
         <label>Pagamento:</label>
-        <select  id="sts_pedido" name="sts_pedido">
-              <option value="Cr">Crédito</option>
-              <option value="De">Débito</option>
-              <option value="Di">Dinheiro</option>
-              <option value="Cp">Criptomoeda</option>
+        <select  id="pag_pedido" name="pag_pedido">
+            {% for p in ped.escolhas_pag %}
+                {% if p.0 == ped.pagamento %}
+                    <option value="{{p.0}}" selected>{{p.1}}</option>
+                {% else %}
+                    <option value="{{p.0}}">{{p.1}}</option>
+                {% endif %}
+            {% endfor%}
         </select>
 
-        <input type="submit" value="Salvar" class="btn btn-success acat">
+        <input type="submit" value="Salvar" class="btn btn-success edcat">
     </form>
 
     
