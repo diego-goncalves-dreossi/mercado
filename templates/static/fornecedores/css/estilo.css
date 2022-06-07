@@ -50,3 +50,7 @@ ul li{
     justify-content: center;
     flex-direction: column;
 }
+
+.ultimo-elemento{
+    margin-bottom: 25px;
+}

@@ -15,13 +15,11 @@
                 {% csrf_token %}
                 <input type="hidden" name="fornecedor_id" value="{{fn.id}}">
 
-                <!--<label>Logo:</label>
-                <input id="id_image" type="file" class="" Required name="image">-->
                 <label>Nome:</label>
-                <input type="text"  value="{{fn.nome}}" name="nfornecedor" id="nfornecedor">
+                <input class="form-control" type="text"  value="{{fn.nome}}" name="nfornecedor" id="nfornecedor">
                 <!--class="form-control"-->
                 <label>CNPJ:</label>
-                <input type="text"  value="{{fn.cnpj}}" name="cnpj" id="cnpj">
+                <input class="form-control ultimo-elemento" type="text"  value="{{fn.cnpj}}" name="cnpj" id="cnpj">
 
                 
                 <div class="botoes">

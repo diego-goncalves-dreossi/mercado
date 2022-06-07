@@ -7,33 +7,37 @@
 {% endblock %}
 {% block 'conteudo' %}
 <main>
-    <h1>Produto {{pr.id}}</h1>
-    <img src="{{pr.img.url}}" alt="logo">
-    <h6>Nome:</h6>
-    <p>{{pr.nome}}</p>
-    <h6>Categoria:</h6>
-    <p>{{pr.categoria.nome}}</p>
-    <h6>Preço:</h6>
-    <p>{{pr.preco}}</p>
-    <h6>Descrição:</h6>
-    <p>{{pr.descricao}}</p>
-    <h6>Estoque</h6>
-    <p>{{pr.estoque}}</p>
-    <h6>Fornecedor:</h6>
-    <p>{{pr.fornecedor.nome}}</p>
+    <div class="com-borda ultimo-elemento">
+        <div class="col-md">
+            <h1>Produto {{pr.id}}</h1>
+            <img class="imagem" src="{{pr.img.url}}" alt="logo">
+            <h6>Nome:</h6>
+            <p>{{pr.nome}}</p>
+            <h6>Categoria:</h6>
+            <p>{{pr.categoria.nome}}</p>
+            <h6>Preço:</h6>
+            <p>{{pr.preco}}</p>
+            <h6>Descrição:</h6>
+            <p>{{pr.descricao}}</p>
+            <h6>Estoque</h6>
+            <p>{{pr.estoque}}</p>
+            <h6>Fornecedor:</h6>
+            <p>{{pr.fornecedor.nome}}</p>
 
-    <form action="{% url 'produtos:excluirproduto' %}" method="post">
-        {% csrf_token %}
+            <form action="{% url 'produtos:excluirproduto' %}" method="post">
+                {% csrf_token %}
 
+                
+                <input type="hidden" name="produto_id" value="{{pr.id}}">
+                <input type="hidden" name="imagem_prod" value="{{pr.img.url}}">
+                
+                <a class="btn btn-success" style="color:white; " href="{% url 'produtos:editarproduto' pr.id %}">Editar</a>
+                <input type="submit" value="Excluir" class="btn btn-danger epr" >
+                <a href="{% url 'produtos:listaprodutos' %}" class="btn btn-info">Voltar</a>
+            </form>
+        </div>
+    </div>        
         
-        <input type="hidden" name="produto_id" value="{{pr.id}}">
-        <input type="hidden" name="imagem_prod" value="{{pr.img.url}}">
-        
-        <a class="btn btn-success" style="color:white; " href="{% url 'produtos:editarproduto' pr.id %}">Editar</a>
-        <input type="submit" value="Excluir" class="btn btn-danger epr" >
-        <a href="{% url 'produtos:listaprodutos' %}" class="btn btn-info">Voltar</a>
-    </form>
-   
 </main>
 
 <script src="{% static 'produtos/js/funcoes.js' %}"></script>
