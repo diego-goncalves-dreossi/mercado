@@ -3,27 +3,33 @@
 
 {% block 'titulo' %}iMercado - Alterar imagem de Fornecedor{% endblock %}
 {% block 'head' %}
-
+    <link rel="stylesheet" type="text/css" href="{% static 'fornecedores/css/estilo.css' %}">
 {% endblock %}
 
 {% block 'conteudo' %}
 <main>
-    <h1>Alterar imagem</h1>
-    
-        <span>Fornecedor {{fn.nome}}</span>
-          
-        <form action="{% url 'fornecedores:alterarimagem' %}" method="post" enctype='multipart/form-data'>
-            {% csrf_token %}
-            <input type="hidden" name="fornecedor_id" value="{{fn.id}}">
-            <input type="hidden" name="imagem_antiga" value="{{fn.img.url}}">
-            <label>Novo Logo:</label>
-            <input id="id_image" type="file" class="" Required name="image">
+    <div class="com-borda">
+        <div class="col-md">
+            <h1>Alterar imagem</h1>
+        
+            <span>Fornecedor {{fn.nome}}</span>
+            
+            <form action="{% url 'fornecedores:alterarimagem' %}" method="post" enctype='multipart/form-data'>
+                {% csrf_token %}
+                <input type="hidden" name="fornecedor_id" value="{{fn.id}}">
+                <input type="hidden" name="imagem_antiga" value="{{fn.img.url}}">
+                <label>Novo Logo:</label>
+                <input id="id_image" type="file" class="" Required name="image">
 
-            <input type="submit" value="Salvar" class="btn btn-success afnimg">
-            <a href="{% url 'fornecedores:editarfornecedor' fn.id %}" class="btn btn-danger">Voltar</a>
+                <div class="botoes">
+                    <input type="submit" value="Salvar" class="btn btn-success afnimg">
+                    <a href="{% url 'fornecedores:editarfornecedor' fn.id %}" class="btn btn-danger">Voltar</a>
+                </div>
 
-        </form>     
-                    
+            </form>     
+        </div>
+    </div>
+
                
            
         

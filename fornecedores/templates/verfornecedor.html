@@ -2,27 +2,35 @@
 {% load static %}
 
 {% block 'titulo' %}iMercado - Fornecedor{% endblock %}
+{% block 'head' %}
+    <link rel="stylesheet" type="text/css" href="{% static 'fornecedores/css/estilo.css' %}">
+{% endblock %}
 {% block 'conteudo' %}
 <main>
-    <h1>Fornecedor {{fn.id}}</h1>
-    
-    <h6>Nome:</h6>
-    <p>{{fn.nome}}</p>
-    <h6>CNPJ:</h6>
-    <p>{{fn.cnpj}}</p>
+    <div class="com-borda">
+        <div class="col-md">
+            <h1>Fornecedor {{fn.id}}</h1>
+            <div class="centro"><img class="imagem" src="{{fn.img.url}}" alt="logo"></div>
+            <h6>Nome:</h6>
+            <p>{{fn.nome}}</p>
+            <h6>CNPJ:</h6>
+            <p>{{fn.cnpj}}</p>
 
-    <form action="{% url 'fornecedores:excluirfornecedor' %}" method="post">
-        {% csrf_token %}
+            <form action="{% url 'fornecedores:excluirfornecedor' %}" method="post">
+                {% csrf_token %}
 
-        <img src="{{fn.img.url}}" alt="logo">
-        <input type="hidden" name="fornecedor_id" value="{{fn.id}}">
-        <input type="hidden" name="imagem_url" value="{{fn.img.url}}">
-        
-        <a class="btn btn-success" style="color:white" href="{% url 'fornecedores:editarfornecedor' fn.id %}">Editar</a>
-        <input type="submit" value="Excluir" class="btn btn-danger efn" >
-        <a href="{% url 'fornecedores:listafornecedores' %}" class="btn btn-info">Voltar</a>
-    </form>
-   
+                
+                <input type="hidden" name="fornecedor_id" value="{{fn.id}}">
+                <input type="hidden" name="imagem_url" value="{{fn.img.url}}">
+                
+                <div class="botoes">
+                    <a class="btn btn-success" style="color:white" href="{% url 'fornecedores:editarfornecedor' fn.id %}">Editar</a>
+                    <input type="submit" value="Excluir" class="btn btn-danger efn" >
+                    <a href="{% url 'fornecedores:listafornecedores' %}" class="btn btn-info">Voltar</a>
+                </div>
+            </form>
+        </div>
+    </div>        
 </main>
 
 <script src="{% static 'fornecedores/js/funcoes.js' %}"></script>

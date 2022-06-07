@@ -7,21 +7,29 @@
 {% endblock %}
 {% block 'conteudo' %}
 <main>
-    <h1>Categoria {{cat.id}}</h1>
     
-    <h6>Nome:</h6>
-    <p>{{cat.nome}}</p>
-    <h6>Descrição:</h6>
-    <p>{{cat.descricao}}</p>
+    <div class="com-borda">
+        <div class="col-md">
+            <h1>Categoria {{cat.id}}</h1>
+            
+            <label>Nome:</label>
+            <p>{{cat.nome}}</p>
+            <label>Descrição:</label>
+            <p>{{cat.descricao}}</p>
 
-    <form action="{% url 'categorias:excluircategoria' %}" method="post">
-        {% csrf_token %}
-        <input type="hidden" name="categoria_id" value="{{cat.id}}">
+    
+            <form action="{% url 'categorias:excluircategoria' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="categoria_id" value="{{cat.id}}">
         
-        <a class="btn btn-success" style="color:white" href="{% url 'categorias:editarcategoria' cat.id %}">Editar</a>
-        <input type="submit" value="Excluir" class="btn btn-danger ecat">
-        <a href="{% url 'categorias:listacategorias' %}" class="btn btn-info">Voltar</a>
-    </form>
+                <div class="botoes">
+                    <a class="btn btn-success" style="color:white" href="{% url 'categorias:editarcategoria' cat.id %}">Editar</a>
+                    <input type="submit" value="Excluir" class="btn btn-danger ecat">
+                    <a href="{% url 'categorias:listacategorias' %}" class="btn btn-info">Voltar</a>
+                </div>
+            </form>
+        </div>
+    </div>
    
 
     

@@ -2,28 +2,37 @@
 {% load static %}
 
 {% block 'titulo' %}iMercado - Editar fornecedor{% endblock %}
+{% block 'head' %}
+    <link rel="stylesheet" type="text/css" href="{% static 'fornecedores/css/estilo.css' %}">
+{% endblock %}
 {% block 'conteudo' %}
 <main>
-    <h1>Editar fornecedor {{fn.id}}</h1>
-    
-    <form action="{% url 'fornecedores:editarfornecedorbd' %}" method="post" enctype='multipart/form-data'>
-        {% csrf_token %}
-        <input type="hidden" name="fornecedor_id" value="{{fn.id}}">
+    <div class="com-borda">
+        <div class="col-md">
+            <h1>Editar fornecedor {{fn.id}}</h1>
+            
+            <form action="{% url 'fornecedores:editarfornecedorbd' %}" method="post" enctype='multipart/form-data'>
+                {% csrf_token %}
+                <input type="hidden" name="fornecedor_id" value="{{fn.id}}">
 
-        <!--<label>Logo:</label>
-        <input id="id_image" type="file" class="" Required name="image">-->
-        <label>Nome:</label>
-        <input type="text"  value="{{fn.nome}}" name="nfornecedor" id="nfornecedor">
-        <!--class="form-control"-->
-        <label>CNPJ:</label>
-        <input type="text"  value="{{fn.cnpj}}" name="cnpj" id="cnpj">
+                <!--<label>Logo:</label>
+                <input id="id_image" type="file" class="" Required name="image">-->
+                <label>Nome:</label>
+                <input type="text"  value="{{fn.nome}}" name="nfornecedor" id="nfornecedor">
+                <!--class="form-control"-->
+                <label>CNPJ:</label>
+                <input type="text"  value="{{fn.cnpj}}" name="cnpj" id="cnpj">
 
-        
-        <input type="submit" value="Salvar" class="btn btn-success edfn">
-        <a href="{% url 'fornecedores:verfornecedor' fn.id %}" class="btn btn-danger">Voltar</a>
-        <a href="{% url 'fornecedores:paginseririmg' fn.id %}" class="btn btn-warning">Nova imagem</a>
-        
-    </form>
+                
+                <div class="botoes">
+                    <input type="submit" value="Salvar" class="btn btn-success edfn">
+                    <a href="{% url 'fornecedores:verfornecedor' fn.id %}" class="btn btn-danger">Voltar</a>
+                    <a href="{% url 'fornecedores:paginseririmg' fn.id %}" class="btn btn-warning">Nova imagem</a>
+                </div>
+                
+            </form>
+        </div>
+    </div>
 
     
 </main>

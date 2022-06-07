@@ -10,15 +10,20 @@
 <main>
     
     <div class="com-borda">
-        <h1>Adicionar nova categoria</h1>
-        <form action="{% url 'categorias:categoriasbd' %}" method="POST">
-            {% csrf_token %}
-            <label>Nome:</label>
-            <input type="text" name="ncategoria" id="ncategoria" placeholder="Nome categoria">
-            <label>Descrição:</label>
-            <textarea id="dcategoria" name="dcategoria" rows="2" cols="30"></textarea>
-            <input type="submit" value="Salvar" class="btn btn-success acat">
-        </form>
+        <div class="col-md">
+            <h1>Adicionar nova categoria</h1>
+            <form action="{% url 'categorias:categoriasbd' %}" method="POST">
+                {% csrf_token %}
+                <label>Nome:</label>
+                <input class="form-control" type="text" name="ncategoria" id="ncategoria" placeholder="Nome categoria">
+                <label>Descrição:</label>
+                <textarea class="ultimo-elemento form-control" id="dcategoria" name="dcategoria" rows="2" cols="30"></textarea>
+                <div class="botoes">
+                    <input type="submit" value="Salvar" class="btn btn-success acat">
+                    <a href="{% url 'categorias:listacategorias' %}" class="btn btn-info">Voltar</a>
+                </div>
+            </form>
+        </div>
     </div>
 
     

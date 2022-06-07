@@ -2,22 +2,33 @@
 {% load static %}
 
 {% block 'titulo' %}iMercado - Novo fornecedor{% endblock %}
+{% block 'head' %}
+    <link rel="stylesheet" type="text/css" href="{% static 'fornecedores/css/estilo.css' %}">
+{% endblock %}
 {% block 'conteudo' %}
 <main>
-    <h1>Adicionar novo fornecedor</h1>
 
-    <form action="{% url 'fornecedores:fornecedoresbd' %}" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
+    <div class="com-borda">
+        <div class="col-md centro">
+        <h1>Adicionar novo fornecedor</h1>
 
-        <label>Logo:</label>
-        <input id="id_image" type="file" class="" Required name="image">
-        <label>Nome:</label>
-        <input type="text" name="nfornecedor" id="nfornecedor" placeholder="Nome categoria">
+        <form action="{% url 'fornecedores:fornecedoresbd' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
 
-        <label>CNPJ:</label>
-        <input id="cnpj" name="cnpj"></input>
-        <input type="submit" value="Salvar" class="btn btn-success afn">
-    </form>
+            <label>Logo:</label>
+            <input id="id_image" type="file"  Required name="image">
+            <label>Nome:</label>
+            <input type="text" name="nfornecedor" id="nfornecedor" placeholder="Nome fornecedor">
+
+            <label>CNPJ:</label>
+            <input id="cnpj" name="cnpj"></input>
+            <div class="botoes">
+                <input type="submit" value="Salvar" class="btn btn-success afn">
+                <a href="{% url 'fornecedores:listafornecedores' %}" class="btn btn-info">Voltar</a>
+            </div>
+        </form>
+        </div>
+    </div>
 
     
 </main>

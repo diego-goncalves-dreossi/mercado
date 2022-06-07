@@ -37,3 +37,18 @@ body a:hover{
 ul li{
     font-size: 20px;
 }
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.ultimo-elemento{
+    margin-bottom: 25px;
+}
+
+label,h6{
+    font-weight: bold;
+    color: rgb(131, 35, 35);
+}

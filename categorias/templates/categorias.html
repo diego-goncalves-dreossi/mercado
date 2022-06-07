@@ -14,7 +14,7 @@
             {% for ct in ctgs %}
                 <li>
                     <div>
-                        <span><a href="{% url 'categorias:vercategoria' ct.id %}">{{ct.nome}}</a></span>
+                        <td><a href="{% url 'categorias:vercategoria' ct.id %}">{{ct.nome}}</a></td>
                     </div>
                 </li>
             {% endfor %}
