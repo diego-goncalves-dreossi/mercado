@@ -12,3 +12,6 @@ def sobre(request):
     if request.session.get('usuario'):
         return render(request,'sobre.html',{'usuario_logado':request.session.get('usuario')})
 
+def pagJSON(request):
+    return HttpResponse('Página JSON')
+
