@@ -14,6 +14,7 @@
             {% for pr in prods %}
                 <li>
                     <div>
+                        <img class="icone" src="{{pr.img.url}}" alt="Imagem fornecedor">
                         <span><a href="{% url 'produtos:verproduto' pr.id %}">{{pr.nome}}</a></span>
                     </div>
                 </li>

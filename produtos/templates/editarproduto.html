@@ -7,50 +7,54 @@
 {% endblock %}
 {% block 'conteudo' %}
 <main>
-    <h1>Editar produto {{pr.id}}</h1>
-    
-    <form action="{% url 'produtos:editarprodutobd' %}" method="post" enctype='multipart/form-data'>
-        {% csrf_token %}
-        <input type="hidden" name="produto_id" value="{{pr.id}}">
+    <div class="com-borda espaco-baixo">
+        <div class="col-md centro">
+            <h1>Editar produto {{pr.id}}</h1>
+            
+            <form action="{% url 'produtos:editarprodutobd' %}" method="post" enctype='multipart/form-data'>
+                {% csrf_token %}
+                <input type="hidden" name="produto_id" value="{{pr.id}}">
 
-        <!--<label>Logo:</label>
-        <input id="id_image" type="file" class="" value="pr.img.url" Required name="image">-->
+                <!--<label>Logo:</label>
+                <input id="id_image" type="file" class="" value="pr.img.url" Required name="image">-->
 
-        <label>Nome:</label>
-        <input type="text"  value="{{pr.nome}}" name="nproduto" id="nproduto">
-        <!--class="form-control"-->
-        <label>Categoria:</label>
-        <select  id="cat_produto"  name="cat_produto">
-            {% for cat in categorias %}
-              <option value="{{cat.id}}">{{cat.nome}}</option>
-            {% endfor %}
-        </select>
+                <label>Nome:</label>
+                <input class="form-control" type="text"  value="{{pr.nome}}" name="nproduto" id="nproduto">
+                <!--class="form-control"-->
+                <label>Categoria:</label>
+                <select class="form-control" id="cat_produto"  name="cat_produto">
+                    {% for cat in categorias %}
+                    <option value="{{cat.id}}">{{cat.nome}}</option>
+                    {% endfor %}
+                </select>
 
-        <label>Preço:</label>
-        <input type="text"  value="{{pr.preco}}" name="pproduto" id="pproduto">
+                <label>Preço:</label>
+                <input class="form-control" type="text"  value="{{pr.preco}}" name="pproduto" id="pproduto">
 
-        <label>Descrição:</label>
-        <input type="text"  value="{{pr.descricao}}" name="dproduto" id="dproduto"></input>
+                <label>Descrição:</label>
+                <input class="form-control" type="text"  value="{{pr.descricao}}" name="dproduto" id="dproduto"></input>
 
-        <label>Estoque:</label>
-        <input type="text"  value="{{pr.estoque}}" name="eproduto" id="eproduto">
+                <label>Estoque:</label>
+                <input class="form-control" type="text"  value="{{pr.estoque}}" name="eproduto" id="eproduto">
 
-        <label>Fornecedor:</label>
-        <select  id="forn_produto"  name="forn_produto">
-            {% for forn in fornecedores %}
-              {% if forn == pr.fornecedor %}
-              <option selected value="{{forn.id}}">{{forn.nome}}</option>
-              {% else %}
-              <option value="{{forn.id}}">{{forn.nome}}</option>
-              {% endif %}
-            {% endfor %}
-        </select>
+                <label>Fornecedor:</label>
+                <select class="form-control espaco-baixo" id="forn_produto"  name="forn_produto">
+                    {% for forn in fornecedores %}
+                    {% if forn == pr.fornecedor %}
+                    <option selected value="{{forn.id}}">{{forn.nome}}</option>
+                    {% else %}
+                    <option value="{{forn.id}}">{{forn.nome}}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
 
-        <input type="submit" value="Salvar" class="btn btn-success edpr">
-        <a href="{% url 'produtos:verproduto' pr.id %}" class="btn btn-danger">Voltar</a>
-        <a href="{% url 'produtos:paginseririmg' pr.id %}" class="btn btn-warning">Nova imagem</a>
-        
-    </form>
+                <input type="submit" value="Salvar" class="btn btn-success edpr">
+                <a href="{% url 'produtos:verproduto' pr.id %}" class="btn btn-danger">Voltar</a>
+                <a href="{% url 'produtos:paginseririmg' pr.id %}" class="btn btn-warning">Nova imagem</a>
+                
+            </form>
+        </div>
+    </div>
 
     
 </main>

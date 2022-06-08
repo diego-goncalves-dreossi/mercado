@@ -11,6 +11,7 @@ main h1{
 }
 
 .com-borda{
+    width: 40%;
     border: 1px solid black;
     padding: 15px;
     border-radius: 10px;
@@ -44,6 +45,11 @@ ul li{
     border:1px solid rgb(215, 215, 164)
 }
 
+.icone{
+    width: 20px;
+    height: 20px;
+}
+
 .centro{
     display: flex;
     align-items: center;
@@ -51,6 +57,11 @@ ul li{
     flex-direction: column;
 }
 
-.ultimo-elemento{
+.espaco-baixo{
     margin-bottom: 25px;
+}
+
+label,h6{
+    font-weight: bold;
+    color: rgb(131, 35, 35);
 }

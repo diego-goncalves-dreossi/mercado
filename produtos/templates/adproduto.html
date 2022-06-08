@@ -7,47 +7,51 @@
 {% endblock %}
 {% block 'conteudo' %}
 <main>
-    <h1>Adicionar produto {{pr.id}}</h1>
-    
-    <form action="{% url 'produtos:produtobd' %}" method="post" enctype='multipart/form-data'>
-        {% csrf_token %}
-        <input type="hidden" name="produto_id" value="{{pr.id}}">
+    <div class="com-borda espaco-baixo">
+        <div class="col-md centro">
+            <h1 class="espaco-baixo">Adicionar produto {{pr.id}}</h1>
+            
+            <form action="{% url 'produtos:produtobd' %}" method="post" enctype='multipart/form-data'>
+                {% csrf_token %}
+                <input type="hidden" name="produto_id" value="{{pr.id}}">
+                <label>Foto:</label>
+                <input class="espaco-baixo" id="imageprod" type="file" class="" name="imageprod">
+                <br>
+                <label>Nome:</label>
+                <input class="form-control" type="text"  value="{{pr.nome}}" name="nproduto" id="nproduto">
+                <!--class="form-control"-->
+                <label>Categoria:</label>
+                <select class="form-control" id="cat_produto"  name="cat_produto">
+                    {% for cat in ctgs %}
+                    <option value="{{cat.id}}">{{cat.nome}}</option>
+                    {% endfor %}
+                </select>
 
-        <label>Foto:</label>
-        <input id="imageprod" type="file" class="" name="imageprod">
-        
-        <label>Nome:</label>
-        <input type="text"  value="{{pr.nome}}" name="nproduto" id="nproduto">
-        <!--class="form-control"-->
-        <label>Categoria:</label>
-        <select id="cat_produto"  name="cat_produto">
-            {% for cat in ctgs %}
-              <option value="{{cat.id}}">{{cat.nome}}</option>
-            {% endfor %}
-        </select>
+                <label>Preço:</label>
+                <input class="form-control" type="text"  value="{{pr.preco}}" name="pproduto" id="pproduto">
 
-        <label>Preço:</label>
-        <input type="text"  value="{{pr.preco}}" name="pproduto" id="pproduto">
+                <label>Descrição:</label>
+                <textarea class="form-control" type="text"  value="{{pr.descricao}}" name="dproduto" id="dproduto"></textarea>
 
-        <label>Descrição:</label>
-        <textarea type="text"  value="{{pr.descricao}}" name="dproduto" id="dproduto"></textarea>
+                <label>Estoque:</label>
+                <input class="form-control" type="text"  value="{{pr.estoque}}" name="eproduto" id="eproduto">
 
-        <label>Estoque:</label>
-        <input type="text"  value="{{pr.estoque}}" name="eproduto" id="eproduto">
+                
 
-        
-
-        <label>Fornecedor:</label>
-        <select  id="forn_produto" name="forn_produto">
-            {% for forn in fncd %}
-              <option value="{{forn.id}}">{{forn.nome}}</option>
-            {% endfor %}
-        </select>
-        
-        <input type="submit" value="Salvar" class="btn btn-success apr" >
-        <a href="{% url 'produtos:listaprodutos' %}" class="btn btn-danger">Cancelar</a>
-    </form>
-
+                <label>Fornecedor:</label>
+                <select class="espaco-baixo form-control" id="forn_produto" name="forn_produto">
+                    {% for forn in fncd %}
+                    <option value="{{forn.id}}">{{forn.nome}}</option>
+                    {% endfor %}
+                </select>
+                
+                <div class="botoes">
+                    <input type="submit" value="Salvar" class="btn btn-success apr" >
+                    <a href="{% url 'produtos:listaprodutos' %}" class="btn btn-danger">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
     
 </main>
 

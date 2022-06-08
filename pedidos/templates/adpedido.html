@@ -2,47 +2,48 @@
 {% load static %}
 
 {% block 'titulo' %}iMercado - Novo pedido{% endblock %}
+{% block 'head' %}
+    <link rel="stylesheet" type="text/css" href="{% static 'pedidos/css/estilo.css' %}">
+{% endblock %}
 {% block 'conteudo' %}
 <main>
     
-    <h1>Adicionar nova pedido</h1>
-
-    <form action="{% url 'pedidos:pedidobd' %}" method="POST">
-        {% csrf_token %}
-
-        <label>Produto:</label>
-        <select  id="ped_produto" name="ped_produto">
-            {% for prod in produtos %}
-              <option value="{{prod.id}}">{{prod.nome}}</option>
-            {% endfor %}
-        </select>
-
-        <label>Filial:</label>
-        <input type="text" name="filial" id="filial" placeholder="Nome filial">
-
-        <label>Quantidade:</label>
-        <input id="qnt" name="qnt" ></input>
-
-        <label>Status:</label>
-        <select  id="sts_pedido" name="sts_pedido">
-            {% for p in ped.status_opc %}
-                <option value="{{p.0}}">{{p.1}}</option>
-            {% endfor%}
-        </select>
-
-        <label>Pagamento:</label>
-        <select  id="pag_pedido" name="pag_pedido">
-            {% for e in ped.escolhas_pag %}
-                {% if e.0 == ped.pagamento %}
-                    <option value="{{e.0}}" selected>{{e.1}}</option>
-                {% else %}
-                    <option value="{{e.0}}">{{e.1}}</option>
-                {% endif %}
-            {% endfor%}
-        </select>
-
-        <input type="submit" value="Salvar" class="btn btn-success acat">
-    </form>
+    <div class="com-borda-pedido">
+        <h1>Adicionar nova pedido</h1>
+        <form action="{% url 'pedidos:pedidobd' %}" method="POST">
+            {% csrf_token %}
+            <label>Produto:</label>
+            <select class="form-control" id="ped_produto" name="ped_produto">
+                {% for prod in produtos %}
+                  <option value="{{prod.id}}">{{prod.nome}}</option>
+                {% endfor %}
+            </select>
+            <label>Filial:</label>
+            <input class="form-control" type="text" name="filial" id="filial" placeholder="Nome filial">
+            <label>Quantidade:</label>
+            <input class="form-control" id="qnt" name="qnt" placeholder="Quantidade do pedido"></input>
+            <label>Status:</label>
+            <select class="form-control" id="sts_pedido" name="sts_pedido">
+                {% for p in ped.status_opc %}
+                    <option value="{{p.0}}">{{p.1}}</option>
+                {% endfor%}
+            </select>
+            <label>Pagamento:</label>
+            <select class="form-control espaco-baixo" id="pag_pedido" name="pag_pedido">
+                {% for e in ped.escolhas_pag %}
+                    {% if e.0 == ped.pagamento %}
+                        <option value="{{e.0}}" selected>{{e.1}}</option>
+                    {% else %}
+                        <option value="{{e.0}}">{{e.1}}</option>
+                    {% endif %}
+                {% endfor%}
+            </select>
+            <div class="botoes">
+                <input type="submit" value="Salvar" class="btn btn-success acat">
+                <a href="{% url 'pedidos:listapedidos' %}" class="btn btn-info">Voltar</a>
+            </div>
+        </form>
+    </div>
 
     
 </main>

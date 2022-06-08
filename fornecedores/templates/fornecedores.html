@@ -14,7 +14,8 @@
             {% for fn in fncd %}
                 <li>
                     <div>
-                        <span><a href="{% url 'fornecedores:verfornecedor' fn.id %}">{{fn.nome}}</a></span>
+                        <img class="icone" src="{{fn.img.url}}" alt="Imagem fornecedor">
+                        <span><a  href="{% url 'fornecedores:verfornecedor' fn.id %}">{{fn.nome}}</a></span>
                     </div>
                 </li>
             {% endfor %}

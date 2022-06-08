@@ -12,14 +12,14 @@
         <div class="col-md">
             <h1>Alterar imagem</h1>
         
-            <span>Fornecedor {{fn.nome}}</span>
+            <label>Fornecedor {{fn.nome}}</label>
             
             <form action="{% url 'fornecedores:alterarimagem' %}" method="post" enctype='multipart/form-data'>
                 {% csrf_token %}
                 <input type="hidden" name="fornecedor_id" value="{{fn.id}}">
                 <input type="hidden" name="imagem_antiga" value="{{fn.img.url}}">
                 <label>Novo Logo:</label>
-                <input id="id_image" type="file" class="" Required name="image">
+                <input class="espaco-baixo" id="id_image" type="file" class="" Required name="image">
 
                 <div class="botoes">
                     <input type="submit" value="Salvar" class="btn btn-success afnimg">

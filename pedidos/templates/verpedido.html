@@ -2,55 +2,60 @@
 {% load static %}
 
 {% block 'titulo' %}iMercado - Pedido{% endblock %}
+{% block 'head' %}
+    <link rel="stylesheet" type="text/css" href="{% static 'pedidos/css/estilo.css' %}">
+{% endblock %}
 {% block 'conteudo' %}
 <main>
-    <h1>Pedido {{ped.id}}</h1>
-    
-    <h6>Produto:</h6>
-    <p>{{ped.produto.nome}}</p>
-    <h6>Filial:</h6>
-    <p>{{ped.filial}}</p>
-    <h6>Pagamento:</h6>
-    {% if ped.pagamento == 'Cr' %}
-        <span>Crédito</span>
-    
-    {% elif ped.pagamento == 'Cp' %}
-        <span>Criptomoeda</span>
-    
-    {% elif ped.pagamento == 'De' %}
-        <span>Débito</span>
-    
-    {% elif ped.pagamento == 'Di' %}
-        <span>Dinheiro</span>
-    {% endif %}
-    <h6>Quantidade do pedido:</h6>
-    <p>{{ped.qntnovosprods}}</p>
-    <h6>Status: </h6>
-    {% if ped.status == 'Ca' %}
-        <span>Cancelado</span>
-    
-    {% elif ped.status == 'En' %}
-        <span>Entregue</span>
-    
-    {% elif ped.status == 'Ac' %}
-        <span>A caminho</span>
-    
-    {% elif ped.status == 'At' %}
-        <span>Atrasado</span>
-    
-    {% elif ped.status == 'Ev' %}
-        <span>Enviado</span>
-    {% endif %}
-
-    <form action="{% url 'pedidos:excluirpedido' %}" method="post">
-        {% csrf_token %}
-        <input type="hidden" name="pedido_id" value="{{ped.id}}">
+    <div class="com-borda-pedido">
+        <h1>Pedido {{ped.id}}</h1>
         
-        <a class="btn btn-success" style="color:white" href="{% url 'pedidos:editarpedido' ped.id %}">Editar</a>
-        <input type="submit" value="Excluir" class="btn btn-danger ecat">
-        <a href="{% url 'pedidos:listapedidos' %}" class="btn btn-info">Voltar</a>
-    </form>
-   
+        <h6>Produto:</h6>
+        <p>{{ped.produto.nome}}</p>
+        <h6>Filial:</h6>
+        <p>{{ped.filial}}</p>
+        <h6>Pagamento:</h6>
+        {% if ped.pagamento == 'Cr' %}
+            <span>Crédito</span>
+        
+        {% elif ped.pagamento == 'Cp' %}
+            <span>Criptomoeda</span>
+        
+        {% elif ped.pagamento == 'De' %}
+            <span>Débito</span>
+        
+        {% elif ped.pagamento == 'Di' %}
+            <span>Dinheiro</span>
+        {% endif %}
+        <h6>Quantidade do pedido:</h6>
+        <p>{{ped.qntnovosprods}}</p>
+        <h6>Status: </h6>
+        {% if ped.status == 'Ca' %}
+            <span>Cancelado</span>
+        
+        {% elif ped.status == 'En' %}
+            <span>Entregue</span>
+        
+        {% elif ped.status == 'Ac' %}
+            <span>A caminho</span>
+        
+        {% elif ped.status == 'At' %}
+            <span>Atrasado</span>
+        
+        {% elif ped.status == 'Ev' %}
+            <span>Enviado</span>
+        {% endif %}
+        <form action="{% url 'pedidos:excluirpedido' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="pedido_id" value="{{ped.id}}">
+        
+            <div class="botoes">
+                <a class="btn btn-success" style="color:white" href="{% url 'pedidos:editarpedido' ped.id %}">Editar</a>
+                <input type="submit" value="Excluir" class="btn btn-danger ecat">
+                <a href="{% url 'pedidos:listapedidos' %}" class="btn btn-info">Voltar</a>
+            </div>
+        </form>
+    </div>
 
     
 </main>
