@@ -31,18 +31,17 @@ def exportarCategorias(request):
             saida.write(objeto_json) 
         print('Funcionou')
 
-        #x = open("./media/dados/categorias.json", "r")
-        #print(x.read())
-
+        #Erro começa daqui
         #zipar
         arqz = z.ZipFile('./media/zipados/categorias.zip', 'w', z.ZIP_DEFLATED)
         arqz.write(filename="./media/dados/categorias.json")
+        arqz.extractall()
         arqz.close()
 
         # Baixar
-        nomearq = './media/zipados/categorias.zip'.split('./')[-1]
-        resposta = FileResponse(open(nomearq,' rb'),as_attachment=True)
-        return resposta
+        #nomearq = './media/dados/categorias.json"'.split('/')[-1]
+        #resposta = FileResponse(open(nomearq,' rb'),as_attachment=True)
+        #return resposta
         return redirect('/inicio', {'usuario_logado':request.session.get('usuario')})
     except Exception as erro:
         print(erro)
