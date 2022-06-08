@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'titulo' %}iMercado - Página JSON{% endblock %}
+{% block 'head' %}
+    <link rel="stylesheet" type="text/css" href="{% static 'fornecedores/css/estilo.css' %}">
+{% endblock %}
+
+{% block 'conteudo' %}
+<main>
+   <a class="btn btn-secondary espaco-baixo" href="" >Importar JSON</a>
+   
+   <a class="btn btn-primary" href="{% url 'sistema:pagexportar' %}">Exportar JSON</a>
+           
+        
+        
+</main>
+
+<script src="{% static 'fornecedores/js/funcoes.js' %}"></script>
+{% endblock %}
