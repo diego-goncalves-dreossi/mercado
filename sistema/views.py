@@ -8,6 +8,7 @@ import json
 #import zipfile as z
 from shutil import make_archive
 
+
 def inicio(request):
     if request.session.get('usuario'):
         return render(request,'inicio.html',{'usuario_logado':request.session.get('usuario')})
@@ -20,6 +21,8 @@ def pagJSON(request):
     return render(request,'paginasjson/pagjson.html',{'usuario_logado':request.session.get('usuario')})
 
 def pagJSONExp(request):
+    
+
     return render(request,'paginasjson/pagexportar.html',{'usuario_logado':request.session.get('usuario')})
 
 def exportarCategorias(request):
@@ -27,9 +30,9 @@ def exportarCategorias(request):
         usuario = Usuario.objects.get(id=request.session['usuario'])
         dados = Categoria.objects.filter(usuario=usuario)
         dados = serializers.serialize('json',dados)
-        c = open('/templates/static/dados/categorias.json','w')
-        json.dump(dados,c, indent=4,sort_keys=True)
-        make_archive('/templates/static/dados/', 'zip', '/templates/static/dados/')
+        f = open('static/dados/categorias.json','w')
+        json.dump(dados,f, indent=4,sort_keys=True)
+        make_archive('static/dados/categorias', 'zip', 'static/dados/')
         print('Funcionou converter/criar json')
        
         return redirect('/inicio', {'usuario_logado':request.session.get('usuario')})
