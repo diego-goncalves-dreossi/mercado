@@ -5,7 +5,8 @@ from autenticacao.models import Usuario
 from pedidos.models import Pedido
 from categorias.models import Categoria
 import json
-import zipfile as z
+#import zipfile as z
+from shutil import make_archive
 
 def inicio(request):
     if request.session.get('usuario'):
@@ -26,25 +27,11 @@ def exportarCategorias(request):
         usuario = Usuario.objects.get(id=request.session['usuario'])
         dados = Categoria.objects.filter(usuario=usuario)
         dados = serializers.serialize('json',dados)
-        objeto_json = json.dumps(dados, indent=4)
-        with open("./media/dados/categorias.json", "w") as saida: 
-            saida.write(objeto_json) 
+        c = open('templates/static/dados/categorias.json','w')
+        json.dump(dados,c, indent=4,sort_keys=True)
+        make_archive('templates/static/dados/', 'zip', 'templates/static/dados/')
         print('Funcionou converter/criar json')
-
-        #Erro começa daqui
-        #zipar
-        #arqz = z.ZipFile('./media/zipados/categorias.zip', 'w', z.ZIP_DEFLATED)
-        #arqz.write(filename="./media/dados/categorias.json")
-        #arqz.extractall()
-        #arqz.close()
-
-        # Baixar
-        #nomearq = './media/dados/categorias.json"'.split('/')[-1]
-        #resposta = FileResponse(open(nomearq,' rb'),as_attachment=True)
-        #return resposta
-
-        
-
+       
         return redirect('/inicio', {'usuario_logado':request.session.get('usuario')})
     except Exception as erro:
         print(erro)
