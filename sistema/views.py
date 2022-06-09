@@ -27,9 +27,9 @@ def exportarCategorias(request):
         usuario = Usuario.objects.get(id=request.session['usuario'])
         dados = Categoria.objects.filter(usuario=usuario)
         dados = serializers.serialize('json',dados)
-        c = open('templates/static/dados/categorias.json','w')
+        c = open('/templates/static/dados/categorias.json','w')
         json.dump(dados,c, indent=4,sort_keys=True)
-        make_archive('templates/static/dados/', 'zip', 'templates/static/dados/')
+        make_archive('/templates/static/dados/', 'zip', '/templates/static/dados/')
         print('Funcionou converter/criar json')
        
         return redirect('/inicio', {'usuario_logado':request.session.get('usuario')})
