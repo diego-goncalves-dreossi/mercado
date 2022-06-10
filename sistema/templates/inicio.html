@@ -7,7 +7,7 @@
 
 {% block 'conteudo' %}
 <main>
-    <div>
+    <div class="tamanho">
         <div class="cabecalho-inicio">
             <h1>Página Inicial - iMercado</h1>
             <p>Veja abaixo os produtos e mercados disponíveis</p>
@@ -17,21 +17,117 @@
                 <h3>Pedidos</h3>
                 <img class="seta" src="{% static 'sistema/img/setabaixo.svg' %}" alt="seta baixo">
             </div>
-            <section>Lista dos pedidos</section>
+            <section>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Pedido</th>
+                            <th scope="col">Produto</th>
+                            <th scope="col">Foto</th>
+                            <th scope="col">Filial</th>
+                            <th scope="col">Pagamento</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ped in pedidos %}
+                        <tr>
+                            <td><a href="{% url 'pedidos:verpedido' ped.id %}">{{ped.id}}</a></td>
+                            <td>{{ped.produto.nome}}</td>
+                            <td><img class="foto-ped" src="{{ped.produto.img.url}}" alt="logo"></td>
+                            <td>{{ped.filial}}</td>
+                            {% if ped.pagamento == 'Cr' %}
+                                <td>Crédito</td>
+                            {% elif ped.pagamento == 'Cp' %}
+                                <td>Criptomoeda</td>
+                
+                            {% elif ped.pagamento == 'De' %}
+                                <td>Débito</td>
+                
+                            {% elif ped.pagamento == 'Di' %}
+                                <td>Dinheiro</td>
+                            {% endif %}
+                            {% if ped.status == 'Ca' %}
+                                <td>Cancelado</td>
+                
+                            {% elif ped.status == 'En' %}
+                                <td>Entregue</td>
+                
+                            {% elif ped.status == 'Ac' %}
+                                <td>A caminho</td>
+                
+                            {% elif ped.status == 'At' %}
+                                <td>Atrasado</td>
+                
+                            {% elif ped.status == 'Ev' %}
+                                <td>Enviado</td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
         </div>
         <div >
             <div class="aperte">
                 <h3>Produtos</h3>
                 <img class="seta" src="{% static 'sistema/img/setabaixo.svg' %}" alt="seta baixo">
             </div>
-            <section>Lista dos produtos</section>
+            <section>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Produto</th>
+                            <th scope="col">Foto</th>
+                            <th scope="col">Categoria</th>
+                            <th scope="col">Preço</th>
+                            <th scope="col">Estoque</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for pr in produtos %}
+                        <tr>
+                            <td><a href="{% url 'produtos:verproduto' pr.id %}">{{pr.id}}</a></td>
+                            <td>{{pr.nome}}</td>
+                            <td><img class="foto-ped" src="{{pr.img.url}}" alt="logo"></td>
+                            <td>{{pr.categoria}}</td>
+                            <td>{{pr.preco}}</td>
+                            <td>{{pr.estoque}}</td>
+                            
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
         </div>
         <div >
             <div class="aperte">
                 <h3>Fornecedores</h3>
                 <img class="seta" src="{% static 'sistema/img/setabaixo.svg' %}" alt="seta baixo">
             </div>
-            <section>Lista dos mercados</section>
+            <section>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Fornecedor</th>
+                            <th scope="col">Foto</th>
+                            <th scope="col">CNPJ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for fn in fornecedores %}
+                        <tr>
+                            <td><a href="{% url 'fornecedores:verfornecedor' fn.id %}">{{fn.id}}</a></td>
+                            <td>{{fn.nome}}</td>
+                            <td><img class="foto-ped" src="{{fn.img.url}}" alt="logo"></td>
+                            <td>{{fn.cnpj}}</td>                        
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
         </div>
     </div>
 </main>

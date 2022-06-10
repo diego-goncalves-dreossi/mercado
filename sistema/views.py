@@ -13,7 +13,30 @@ from shutil import make_archive
 
 def inicio(request):
     if request.session.get('usuario'):
-        return render(request,'inicio.html',{'usuario_logado':request.session.get('usuario')})
+        usuario = Usuario.objects.get(id=request.session['usuario'])
+        peds = Pedido.objects.filter(usuario=usuario).order_by('-id')
+        prods = Produto.objects.filter(usuario=usuario).order_by('-id')
+        forns = Fornecedor.objects.filter(usuario=usuario).order_by('-id')
+
+        if len(peds) < 6:
+            peds = Pedido.objects.filter(usuario=usuario).order_by('-id')[:len(peds)]
+        else:
+            peds = Pedido.objects.filter(usuario=usuario).order_by('-id')[:6]
+
+        if len(prods) < 6:
+            prods = Produto.objects.filter(usuario=usuario).order_by('-id')[:len(prods)]
+        else:
+            prods = Produto.objects.filter(usuario=usuario).order_by('-id')[:6]
+        
+        
+        if len(forns) < 6:
+            forns = Fornecedor.objects.filter(usuario=usuario).order_by('-id')[:len(prods)]
+        else:
+            forns = Fornecedor.objects.filter(usuario=usuario).order_by('-id')[:6]
+        
+        
+       
+        return render(request,'inicio.html',{'usuario_logado':request.session.get('usuario'),'pedidos':peds,'produtos':prods,'fornecedores':forns})
 
 def sobre(request):
     if request.session.get('usuario'):
