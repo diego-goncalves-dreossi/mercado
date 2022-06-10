@@ -9,14 +9,17 @@
 {% block 'conteudo' %}
 <main>
     <h1>Aqui</h1>
-   {% if tabela == Categorias%}
+    <h1>Variavel {{tabela}}</h1>
+   {% if tabela == 'Categorias' %}
    <a class="btn btn-warning espaco-baixo" href="{% static 'dados/categorias.zip' %}" download="categorias.zip">Exportar Categoria</a>
-   {% elif tabela == Fornecedores%}
-   <a class="btn btn-info espaco-baixo" href="">Exportar Fornecedor</a>
-   {% elif tabela == Produtos%}
-   <a class="btn btn-success espaco-baixo" href="">Exportar Produto</a>
-   {%elif tabela == Pedidos %}
-   <a class="btn btn-light espaco-baixo" href="">Exportar Pedido</a>
+   
+
+   {% elif tabela == 'Fornecedores' %}
+   <a class="btn btn-info espaco-baixo" href="{% static 'dados/fornecedores.zip' %}" download="fornecedores.zip">Exportar Fornecedor</a>
+   {% elif tabela == 'Produtos' %}
+   <a class="btn btn-success espaco-baixo" href="{% static 'dados/produtos.zip' %}" download="produtos.zip">Exportar Produto</a>
+   {% elif tabela == 'Pedidos' %}
+   <a class="btn btn-light espaco-baixo" href="{% static 'dados/pedidos.zip' %}" download="pedidos.zip">Exportar Pedido</a>
    {% else %}
    <p>Erro</p>
    {% endif %}
