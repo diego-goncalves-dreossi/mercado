@@ -8,9 +8,12 @@
 
 {% block 'conteudo' %}
 <main>
-   <a class="btn btn-secondary espaco-baixo" href="" >Importar JSON</a>
-   
-   <a class="btn btn-primary" href="{% url 'sistema:gerarjson' %}">Exportar JSON</a>
+   <!---->
+
+   <a class="btn btn-warning espaco-baixo" href="{% url 'sistema:exportarcategorias' %}">Gerar categorias.json</a>
+   <a class="btn btn-info espaco-baixo" href="">Gerar fornecedores.json</a>
+   <a class="btn btn-success espaco-baixo" href="">Gerar produtos.json</a>
+   <a class="btn btn-light espaco-baixo" href="">Gerar pedidos.json</a>
            
         
         
